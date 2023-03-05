@@ -42,3 +42,21 @@ nav {
 img {
     filter: invert(66%) sepia(11%) saturate(2505%) hue-rotate(71deg) brightness(95%) contrast(89%);
 }
+
+.task-input {
+    width: 400px;
+    height: 400px;
+    background-color: rgb(231, 230, 230);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hidden {
+    display: none;
+}
+
+.blur {
+    filter:blur(3px)
+}
