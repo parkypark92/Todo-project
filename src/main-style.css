@@ -1,0 +1,44 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: grid;
+    grid-template: 70px 1fr / 300px 1fr;
+}
+
+header {
+    background-color: rgb(223, 100, 110);
+    grid-column: 1 / 3;
+}
+
+nav {
+    background-color: rgb(231, 231, 231);
+    padding: 20px;
+}
+
+.tasks {
+    margin-bottom: 50px;
+}
+
+.tasks-header, .projects-header {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.tasks-breakdown, .projects-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+img {
+    filter: invert(66%) sepia(11%) saturate(2505%) hue-rotate(71deg) brightness(95%) contrast(89%);
+}
