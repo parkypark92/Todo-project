@@ -8,46 +8,64 @@
     <title>Todo</title>
 </head>
 <body>
-    <header>
-        <h1>My Todo</h1>
-    </header>
-    <nav>
-        <div class="tasks">
-            <div class="tasks-header">
-                <h2>Tasks</h2>
-                <div id="add-task"><img src="/src/icons/plus-circle.svg" alt="" width="30"></div>
+    <div class="main-wrapper">
+        <header>
+            <h1>My Todo</h1>
+        </header>
+        <nav>
+            <div class="tasks">
+                <div class="tasks-header">
+                    <h2>Tasks</h2>
+                    <div id="new-task"><img src="/src/icons/plus-circle.svg" alt="" width="30"></div>
+                </div>
+                <div class="tasks-breakdown">
+                    <h3>Today</h3>
+                    <h3>This Week</h3>
+                    <h3>All</h3>
+                    <h3>Complete</h3>
+                </div>
             </div>
-            <div class="tasks-breakdown">
-                <h3>Today</h3>
-                <h3>This Week</h3>
-                <h3>All</h3>
-                <h3>Complete</h3>
+            <div class="projects">
+                <div class="projects-header">
+                    <h2>Projects</h2>
+                    <div><img src="/src/icons/plus-circle.svg" alt="" width="30" id="new-project"></div>
+                </div>
+                <div class="projects-breakdown">
+                    <h3>All</h3>
+                </div>
             </div>
-        </div>
-
-        <div class="projects">
-            <div class="projects-header">
-                <h2>Projects</h2>
-                <div><img src="/src/icons/plus-circle.svg" alt="" width="30" id="add-project"></div>
-            </div>
-            <div class="projects-breakdown">
-                <h3>All</h3>
-            </div>
-        </div>
-    </nav>
-    <main></main>
+        </nav>
+        <main></main>
+    </div>
     <div class="task-input hidden">
-        <label for="description">Task description:</label>
-        <input type="text" name="description" id="description">
-        <label for="date">Due Date:</label>
-        <input type="date" name="date" id="date">
-        <label for="priority">Priority</label>
-        <select name="priority" id="priority">
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-        </select>
-        <button type="button">Add</button>
+        <form action="#" id="task-form">
+            <div>
+                <label for="description">Task description:</label>
+                <input type="text" name="description" id="description">
+            </div>
+            <div>
+                <label for="date">Due Date:</label>
+                <input type="date" name="date" id="date">
+            </div>
+            <label for="priority">Priority</label>
+            <div>
+                <select name="priority" id="priority">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+            <div>
+                <label for="project-select">Project:</label>
+                <select name="project-select" id="project-select">
+                    <option value="all">All</option>
+                </select>
+            </div>
+            <div>
+                <button type="button" class="add-task">Add</button>
+                <button type="button" class="cancel-task">Cancel</button>
+            </div>
+        </form>
     </div>
 </body>
 </html>
