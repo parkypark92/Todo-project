@@ -53,7 +53,7 @@ main {
     background-color: aqua;
 }
 
-.task-input {
+.task-input, .project-input {
     width: 400px;
     height: 400px;
     background-color: rgb(231, 230, 230);
