@@ -57,7 +57,9 @@ function displayNewTask(task) {
   const editButton = createButton("task-edit-button", "EDIT", taskDiv);
   editButton.setAttribute("data-index", tasks.indexOf(task));
   editButton.addEventListener("click", displayEditInput);
-  createButton("task-remove-button", "DELETE", taskDiv);
+  const deleteButton = createButton("task-remove-button", "DELETE", taskDiv);
+  deleteButton.setAttribute("data-index", tasks.indexOf(task));
+  deleteButton.addEventListener("click", deleteTask);
 }
 
 function displayEditInput() {
@@ -70,6 +72,7 @@ function displayEditInput() {
 }
 
 confirmEdit.addEventListener("click", editTaskValues);
+cancelEdit.addEventListener("click", () => exitInputWindow(editTask, editForm));
 
 function editTaskValues() {
   tasks[this.getAttribute("data-index")].description = editDescription.value;
@@ -79,15 +82,25 @@ function editTaskValues() {
   const taskDisplay = document.querySelector(
     `[data-index="${this.getAttribute("data-index")}"]`
   );
-  const newDescription = taskDisplay.querySelector(".task-description");
-  newDescription.textContent = editDescription.value;
-  const newDate = taskDisplay.querySelector(".task-date");
-  newDate.textContent = editDate.value;
-  const newPriority = taskDisplay.querySelector(".task-priority");
-  newPriority.textContent = editPriority.value;
-  const newProject = taskDisplay.querySelector(".task-project");
-  newProject.textContent = editProject.value;
+  taskDisplay.querySelector(".task-description").textContent =
+    editDescription.value;
+  taskDisplay.querySelector(".task-date").textContent = editDate.value;
+  taskDisplay.querySelector(".task-priority").textContent = editPriority.value;
+  taskDisplay.querySelector(".task-project").textContent = editProject.value;
   exitInputWindow(editTask, editForm);
+}
+
+function deleteTask(e) {
+  tasks.splice(e.target.getAttribute("data-index"), 1);
+  reassignIndex();
+}
+
+function reassignIndex() {
+  display.textContent = "";
+  for (let task of tasks) {
+    task.id = tasks.indexOf(task);
+    displayNewTask(task);
+  }
 }
 
 // PROJECTS
