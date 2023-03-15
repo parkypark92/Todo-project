@@ -8,6 +8,7 @@
     <title>Todo</title>
 </head>
 <body>
+    <!-- MAIN CONTENT -->
     <div class="main-wrapper">
         <header>
             <h1>My Todo</h1>
@@ -19,10 +20,10 @@
                     <div id="new-task"><img src="/src/icons/plus-circle.svg" alt="" width="30"></div>
                 </div>
                 <div class="tasks-breakdown">
-                    <h3>Today</h3>
-                    <h3>This Week</h3>
-                    <h3>All</h3>
-                    <h3>Complete</h3>
+                    <h3 id="tasks-today">Today</h3>
+                    <h3 id="tasks-this-week">This Week</h3>
+                    <h3 id="all-tasks">All</h3>
+                    <h3 id="completed-tasks">Complete</h3>
                 </div>
             </div>
             <div class="projects">
@@ -31,12 +32,15 @@
                     <div><img src="/src/icons/plus-circle.svg" alt="" width="30" id="new-project"></div>
                 </div>
                 <div class="projects-breakdown">
-                    <h3>ALL</h3>
+                    <h3 id="all-projects" class="active-project">ALL</h3>
                 </div>
             </div>
         </nav>
-        <main></main>
+        <main>
+        </main>
     </div>
+    <!-- HIDDEN WINDOWS -->
+    <!-- TASK INPUT -->
     <div class="task-input hidden">
         <form action="#" id="task-form">
             <div>
@@ -67,6 +71,38 @@
             </div>
         </form>
     </div>
+    <!-- TASK EDIT -->
+    <div class="task-edit hidden">
+        <form action="#" id="task-edit-form">
+            <div>
+                <label for="edit-description">Task description:</label>
+                <input type="text" name="edit-description" id="edit-description">
+            </div>
+            <div>
+                <label for="edit-date">Due Date:</label>
+                <input type="date" name="edit-date" id="edit-date">
+            </div>
+            <label for="edit-priority">Priority</label>
+            <div>
+                <select name="edit-priority" id="edit-priority">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+            <div>
+                <label for="edit-project-select">Project:</label>
+                <select name="edit-project-select" id="edit-project-select">
+                    <option value="all">ALL</option>
+                </select>
+            </div>
+            <div>
+                <button type="button" class="confirm-edit" data-index="">CONFIRM</button>
+                <button type="button" class="cancel-edit">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <!-- PROJECT INPUT -->
     <div class="project-input hidden">
         <form action="#" class="project-form">
             <div>
