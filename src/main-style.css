@@ -43,6 +43,14 @@ img {
     filter: invert(66%) sepia(11%) saturate(2505%) hue-rotate(71deg) brightness(95%) contrast(89%);
 }
 
+#new-project:hover, #new-task:hover, h3:hover {
+    cursor: pointer;
+}
+
+h3:hover {
+    background-color: rgb(207, 207, 207);
+}
+
 main {
     padding: 50px;
 }
@@ -53,7 +61,7 @@ main {
     background-color: aqua;
 }
 
-.task-input, .project-input {
+.task-input, .project-input, .task-edit {
     width: 400px;
     height: 400px;
     background-color: rgb(231, 230, 230);
@@ -63,6 +71,11 @@ main {
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
+}
+
+.active-project {
+    background-color: rgb(207, 207, 207);
+
 }
 
 .hidden {
