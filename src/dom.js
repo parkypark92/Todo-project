@@ -1,6 +1,8 @@
 import { tasks, projects } from ".";
 import Task from "./tasks";
 import Project from "./projects";
+import { displayTodaysTasks } from "./display";
+export { createTaskDisplay, display };
 
 const mainWrapper = document.querySelector(".main-wrapper");
 const display = document.querySelector("main");
@@ -43,11 +45,11 @@ function addNewTask() {
   );
   tasks.push(newTask);
   newTask.id = tasks.indexOf(newTask);
-  displayNewTask(newTask);
+  createTaskDisplay(newTask);
   exitInputWindow(taskInput, taskForm);
 }
 
-function displayNewTask(task) {
+function createTaskDisplay(task) {
   const taskDiv = createDiv("task-display", "", display);
   taskDiv.setAttribute("data-index", tasks.indexOf(task));
   createDiv("task-description", task.description, taskDiv);
@@ -62,6 +64,9 @@ function displayNewTask(task) {
   deleteButton.addEventListener("click", deleteTask);
 }
 
+tasksToday.addEventListener("click", displayTodaysTasks);
+
+// EDIT TASK
 function displayEditInput() {
   displayInputWindow(editTask);
   editDescription.value = tasks[this.getAttribute("data-index")].description;
@@ -88,6 +93,7 @@ function editTaskValues() {
   taskDisplay.querySelector(".task-priority").textContent = editPriority.value;
   taskDisplay.querySelector(".task-project").textContent = editProject.value;
   exitInputWindow(editTask, editForm);
+  console.log(tasks);
 }
 
 function deleteTask(e) {
@@ -99,8 +105,9 @@ function reassignIndex() {
   display.textContent = "";
   for (let task of tasks) {
     task.id = tasks.indexOf(task);
-    displayNewTask(task);
+    createTaskDisplay(task);
   }
+  console.log(tasks);
 }
 
 // PROJECTS
@@ -111,7 +118,6 @@ const projectName = document.querySelector("#project-name");
 const addProjectButton = document.querySelector(".add-project");
 const cancelProjectButton = document.querySelector(".cancel-project");
 const projectsBreakdown = document.querySelector(".projects-breakdown");
-const allProjects = document.querySelector("#all-projects");
 
 newProjectButton.addEventListener("click", () =>
   displayInputWindow(projectInput)
@@ -128,11 +134,12 @@ function addProjectToSidebar(name) {
 }
 
 function addProjectToSelection(newOption) {
-  const projectOption = document.createElement("option");
-  projectOption.value = newOption;
-  projectOption.textContent = newOption;
-  taskProject.appendChild(projectOption);
-  editProject.appendChild(projectOption);
+  const projectTaskOption = document.createElement("option");
+  projectTaskOption.value = newOption;
+  projectTaskOption.textContent = newOption;
+  taskProject.appendChild(projectTaskOption);
+  const projectEditOption = projectTaskOption.cloneNode(true);
+  editProject.appendChild(projectEditOption);
 }
 
 function addNewProject() {
