@@ -1,8 +1,13 @@
-import { tasks, projects } from ".";
+import { tasks, currentTasks, projects } from ".";
 import Task from "./tasks";
 import Project from "./projects";
-import { displayTodaysTasks } from "./display";
-export { createTaskDisplay, display };
+import {
+  activate,
+  getTodaysTasks,
+  getAllTasks,
+  displayChecker,
+} from "./display";
+export { displayCurrentTasks, taskDisplays, tasksToday, allTasks };
 
 const mainWrapper = document.querySelector(".main-wrapper");
 const display = document.querySelector("main");
@@ -29,6 +34,7 @@ const tasksToday = document.querySelector("#tasks-today");
 const tasksThisWeek = document.querySelector("#tasks-this-week");
 const allTasks = document.querySelector("#all-tasks");
 const completedTasks = document.querySelector("#completed-tasks");
+const taskDisplays = [tasksToday, tasksThisWeek, allTasks, completedTasks];
 
 newTaskButton.addEventListener("click", () => displayInputWindow(taskInput));
 addTaskButton.addEventListener("click", addNewTask);
@@ -45,7 +51,8 @@ function addNewTask() {
   );
   tasks.push(newTask);
   newTask.id = tasks.indexOf(newTask);
-  createTaskDisplay(newTask);
+  // createTaskDisplay(newTask);
+  displayChecker();
   exitInputWindow(taskInput, taskForm);
 }
 
@@ -64,7 +71,15 @@ function createTaskDisplay(task) {
   deleteButton.addEventListener("click", deleteTask);
 }
 
-tasksToday.addEventListener("click", displayTodaysTasks);
+tasksToday.addEventListener("click", (e) => {
+  activate(e);
+  getTodaysTasks();
+});
+
+allTasks.addEventListener("click", (e) => {
+  activate(e);
+  getAllTasks();
+});
 
 // EDIT TASK
 function displayEditInput() {
@@ -92,22 +107,27 @@ function editTaskValues() {
   taskDisplay.querySelector(".task-date").textContent = editDate.value;
   taskDisplay.querySelector(".task-priority").textContent = editPriority.value;
   taskDisplay.querySelector(".task-project").textContent = editProject.value;
+  displayChecker();
   exitInputWindow(editTask, editForm);
-  console.log(tasks);
 }
 
 function deleteTask(e) {
   tasks.splice(e.target.getAttribute("data-index"), 1);
   reassignIndex();
+  displayChecker();
 }
 
 function reassignIndex() {
-  display.textContent = "";
   for (let task of tasks) {
     task.id = tasks.indexOf(task);
+  }
+}
+
+function displayCurrentTasks() {
+  display.textContent = "";
+  for (let task of currentTasks) {
     createTaskDisplay(task);
   }
-  console.log(tasks);
 }
 
 // PROJECTS

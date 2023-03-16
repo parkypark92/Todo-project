@@ -73,7 +73,7 @@ main {
     flex-direction: column;
 }
 
-.active-project {
+.active {
     background-color: rgb(207, 207, 207);
 
 }
