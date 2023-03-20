@@ -51,7 +51,6 @@ function addNewTask() {
   );
   tasks.push(newTask);
   newTask.id = tasks.indexOf(newTask);
-  // createTaskDisplay(newTask);
   displayChecker();
   exitInputWindow(taskInput, taskForm);
 }
@@ -69,6 +68,18 @@ function createTaskDisplay(task) {
   const deleteButton = createButton("task-remove-button", "DELETE", taskDiv);
   deleteButton.setAttribute("data-index", tasks.indexOf(task));
   deleteButton.addEventListener("click", deleteTask);
+}
+
+function displayCurrentTasks() {
+  display.textContent = "";
+  displayByDate(currentTasks);
+  for (let task of currentTasks) {
+    createTaskDisplay(task);
+  }
+}
+
+function displayByDate(array) {
+  array.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
 }
 
 tasksToday.addEventListener("click", (e) => {
@@ -120,13 +131,6 @@ function deleteTask(e) {
 function reassignIndex() {
   for (let task of tasks) {
     task.id = tasks.indexOf(task);
-  }
-}
-
-function displayCurrentTasks() {
-  display.textContent = "";
-  for (let task of currentTasks) {
-    createTaskDisplay(task);
   }
 }
 
