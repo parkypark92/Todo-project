@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { tasks, currentTasks, projects } from ".";
 import Task from "./tasks";
 import Project from "./projects";
@@ -59,7 +60,7 @@ function createTaskDisplay(task) {
   const taskDiv = createDiv("task-display", "", display);
   taskDiv.setAttribute("data-index", tasks.indexOf(task));
   createDiv("task-description", task.description, taskDiv);
-  createDiv("task-date", task.date, taskDiv);
+  createDiv("task-date", format(new Date(task.date), "dd-MM-yyyy"), taskDiv);
   createDiv("task-priority", task.priority, taskDiv);
   createDiv("task-project", task.project, taskDiv);
   const editButton = createButton("task-edit-button", "EDIT", taskDiv);
@@ -73,9 +74,26 @@ function createTaskDisplay(task) {
 function displayCurrentTasks() {
   display.textContent = "";
   displayByDate(currentTasks);
-  for (let task of currentTasks) {
-    createTaskDisplay(task);
+  for (let i = 0; i < currentTasks.length; i++) {
+    if (i === 0) {
+      createDateHeader(i);
+      createTaskDisplay(currentTasks[i]);
+    } else if (currentTasks[i].date !== currentTasks[i - 1].date) {
+      createDateHeader(i);
+      createTaskDisplay(currentTasks[i]);
+    } else {
+      createTaskDisplay(currentTasks[i]);
+    }
   }
+}
+
+function createDateHeader(index) {
+  const dateHeader = document.createElement("h2");
+  dateHeader.textContent = format(
+    new Date(currentTasks[index].date),
+    "EEE, dd MMM yyyy"
+  );
+  display.appendChild(dateHeader);
 }
 
 function displayByDate(array) {

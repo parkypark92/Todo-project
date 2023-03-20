@@ -1,8 +1,9 @@
+import { format } from "date-fns";
 import { tasks, projects, currentTasks } from ".";
 import { displayCurrentTasks, taskDisplays, tasksToday, allTasks } from "./dom";
 export { getTodaysTasks, getAllTasks, activate, displayChecker };
 
-let currentDate = new Date().toJSON().slice(0, 10);
+let currentDate = format(new Date(), "yyyy-MM-dd");
 
 function displayChecker() {
   if (tasksToday.classList.contains("active")) {
