@@ -69,35 +69,71 @@ function createTaskDisplay(task) {
   const deleteButton = createButton("task-remove-button", "DELETE", taskDiv);
   deleteButton.setAttribute("data-index", tasks.indexOf(task));
   deleteButton.addEventListener("click", deleteTask);
+  setPriorityColor(task, taskDiv);
 }
 
 function displayCurrentTasks() {
   display.textContent = "";
-  displayByDate(currentTasks);
-  for (let i = 0; i < currentTasks.length; i++) {
-    if (i === 0) {
-      createDateHeader(i);
-      createTaskDisplay(currentTasks[i]);
-    } else if (currentTasks[i].date !== currentTasks[i - 1].date) {
-      createDateHeader(i);
-      createTaskDisplay(currentTasks[i]);
-    } else {
-      createTaskDisplay(currentTasks[i]);
+  displayByPriority(currentTasks);
+  const tasksByDate = groupByDate(currentTasks);
+  const orderedDates = orderDates(tasksByDate);
+  console.log(orderedDates);
+  for (let key in orderedDates) {
+    createDateHeader(key);
+    for (let task of orderedDates[key]) {
+      createTaskDisplay(task);
     }
   }
 }
 
-function createDateHeader(index) {
+function setPriorityColor(task, taskDiv) {
+  if (task.priority === "1-high") {
+    taskDiv.classList.add("high-priority");
+  } else if (task.priority === "2-medium") {
+    taskDiv.classList.add("medium-priority");
+  } else if (task.priority === "3-low") {
+    taskDiv.classList.add("low-priority");
+  } else {
+    return;
+  }
+}
+
+function createDateHeader(date) {
   const dateHeader = document.createElement("h2");
-  dateHeader.textContent = format(
-    new Date(currentTasks[index].date),
-    "EEE, dd MMM yyyy"
-  );
+  dateHeader.textContent = format(new Date(date), "EEE, dd MMM yyyy");
   display.appendChild(dateHeader);
 }
 
-function displayByDate(array) {
-  array.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+function orderDates(obj) {
+  return Object.keys(obj)
+    .sort((a, b) => Date.parse(a) - Date.parse(b))
+    .reduce(function (result, key) {
+      result[key] = obj[key];
+      return result;
+    }, {});
+}
+
+function displayByPriority(array) {
+  array.sort((a, b) =>
+    a.priority > b.priority ? 1 : a.priority < b.priority ? -1 : 0
+  );
+}
+
+function groupByDate(array) {
+  const groupArrayObject = array.reduce(
+    (group, arr) => {
+      const { date } = arr;
+
+      group[date] = group[date] ?? [];
+
+      group[date].push(arr);
+
+      return group;
+    },
+
+    {}
+  );
+  return groupArrayObject;
 }
 
 tasksToday.addEventListener("click", (e) => {
@@ -128,6 +164,7 @@ function editTaskValues() {
   tasks[this.getAttribute("data-index")].date = editDate.value;
   tasks[this.getAttribute("data-index")].project = editProject.value;
   tasks[this.getAttribute("data-index")].priority = editPriority.value;
+  console.log(currentTasks);
   const taskDisplay = document.querySelector(
     `[data-index="${this.getAttribute("data-index")}"]`
   );

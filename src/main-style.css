@@ -73,6 +73,18 @@ main {
     flex-direction: column;
 }
 
+.high-priority {
+    background-color: red;
+}
+
+.medium-priority {
+    background-color: orange;
+}
+
+.low-priority {
+    background-color: green;
+}
+
 .active {
     background-color: rgb(207, 207, 207);
 
