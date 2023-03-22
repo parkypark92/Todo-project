@@ -1,4 +1,7 @@
-export { Task as default };
+export { Task, tasks, currentTasks };
+const tasks = [];
+let currentTasks = [];
+
 const Task = (description, date, project, priority) => {
   return {
     description,

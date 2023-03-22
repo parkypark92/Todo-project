@@ -1,14 +1,8 @@
 import { format } from "date-fns";
-import { tasks, currentTasks, projects } from ".";
-import Task from "./tasks";
-import Project from "./projects";
-import {
-  activate,
-  getTodaysTasks,
-  getAllTasks,
-  displayChecker,
-} from "./display";
-export { displayCurrentTasks, taskDisplays, tasksToday, allTasks };
+import { Task, tasks, currentTasks } from "./tasks";
+import { Project, projects, projectHeadings } from "./projects";
+import { activate, displayChecker, setPriorityColor } from "./display";
+export { createTaskDisplay, taskDisplays, tasksToday, allTasks, display };
 
 const mainWrapper = document.querySelector(".main-wrapper");
 const display = document.querySelector("main");
@@ -72,79 +66,9 @@ function createTaskDisplay(task) {
   setPriorityColor(task, taskDiv);
 }
 
-function displayCurrentTasks() {
-  display.textContent = "";
-  displayByPriority(currentTasks);
-  const tasksByDate = groupByDate(currentTasks);
-  const orderedDates = orderDates(tasksByDate);
-  console.log(orderedDates);
-  for (let key in orderedDates) {
-    createDateHeader(key);
-    for (let task of orderedDates[key]) {
-      createTaskDisplay(task);
-    }
-  }
-}
+tasksToday.addEventListener("click", activate);
 
-function setPriorityColor(task, taskDiv) {
-  if (task.priority === "1-high") {
-    taskDiv.classList.add("high-priority");
-  } else if (task.priority === "2-medium") {
-    taskDiv.classList.add("medium-priority");
-  } else if (task.priority === "3-low") {
-    taskDiv.classList.add("low-priority");
-  } else {
-    return;
-  }
-}
-
-function createDateHeader(date) {
-  const dateHeader = document.createElement("h2");
-  dateHeader.textContent = format(new Date(date), "EEE, dd MMM yyyy");
-  display.appendChild(dateHeader);
-}
-
-function orderDates(obj) {
-  return Object.keys(obj)
-    .sort((a, b) => Date.parse(a) - Date.parse(b))
-    .reduce(function (result, key) {
-      result[key] = obj[key];
-      return result;
-    }, {});
-}
-
-function displayByPriority(array) {
-  array.sort((a, b) =>
-    a.priority > b.priority ? 1 : a.priority < b.priority ? -1 : 0
-  );
-}
-
-function groupByDate(array) {
-  const groupArrayObject = array.reduce(
-    (group, arr) => {
-      const { date } = arr;
-
-      group[date] = group[date] ?? [];
-
-      group[date].push(arr);
-
-      return group;
-    },
-
-    {}
-  );
-  return groupArrayObject;
-}
-
-tasksToday.addEventListener("click", (e) => {
-  activate(e);
-  getTodaysTasks();
-});
-
-allTasks.addEventListener("click", (e) => {
-  activate(e);
-  getAllTasks();
-});
+allTasks.addEventListener("click", activate);
 
 // EDIT TASK
 function displayEditInput() {
@@ -210,6 +134,7 @@ function addProjectToSidebar(name) {
   const projectHeading = document.createElement("h3");
   projectHeading.textContent = name.toUpperCase();
   projectsBreakdown.appendChild(projectHeading);
+  projectHeadings.push(projectHeading);
 }
 
 function addProjectToSelection(newOption) {
@@ -228,6 +153,7 @@ function addNewProject() {
   addProjectToSidebar(projectName.value);
   addProjectToSelection(projectName.value);
   exitInputWindow(projectInput, projectForm);
+  console.log(projects);
 }
 
 // DOM
