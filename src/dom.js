@@ -2,7 +2,14 @@ import { format } from "date-fns";
 import { Task, tasks, currentTasks } from "./tasks";
 import { Project, projects, projectHeadings } from "./projects";
 import { activate, displayChecker, setPriorityColor } from "./display";
-export { createTaskDisplay, taskDisplays, tasksToday, allTasks, display };
+export {
+  createTaskDisplay,
+  taskDisplays,
+  tasksToday,
+  allTasks,
+  tasksThisWeek,
+  display,
+};
 
 const mainWrapper = document.querySelector(".main-wrapper");
 const display = document.querySelector("main");
@@ -69,6 +76,8 @@ function createTaskDisplay(task) {
 tasksToday.addEventListener("click", activate);
 
 allTasks.addEventListener("click", activate);
+
+tasksThisWeek.addEventListener("click", activate);
 
 // EDIT TASK
 function displayEditInput() {

@@ -1,16 +1,29 @@
-import { format } from "date-fns";
+import { format, addDays, startOfWeek } from "date-fns";
 import { tasks, currentTasks } from "./tasks";
 import { projectHeadings } from "./projects";
 import {
   taskDisplays,
   tasksToday,
   allTasks,
+  tasksThisWeek,
   display,
   createTaskDisplay,
 } from "./dom";
 export { activate, displayChecker, setPriorityColor };
 
 let currentDate = format(new Date(), "yyyy-MM-dd");
+
+let currentWeek = function () {
+  let firstDay = startOfWeek(Date.parse(currentDate), { weekStartsOn: 1 });
+  let week = [firstDay];
+  for (let i = 0; i < 6; i++) {
+    let day = week[i];
+    let nextDay = addDays(day, 1);
+    week.push(nextDay);
+  }
+  const formattedWeek = week.map((elem) => format(new Date(elem), "yyy-MM-dd"));
+  return formattedWeek;
+};
 
 function activate() {
   deactivate();
@@ -34,6 +47,17 @@ function displayChecker() {
   if (allTasks.classList.contains("active")) {
     getAllTasks();
   }
+  if (tasksThisWeek.classList.contains("active")) {
+    getWeekTasks();
+  }
+}
+
+function getAllTasks() {
+  currentTasks.length = 0;
+  for (let task of tasks) {
+    currentTasks.push(task);
+  }
+  displayCurrentTasks();
 }
 
 function getTodaysTasks() {
@@ -42,14 +66,19 @@ function getTodaysTasks() {
     if (task.date === currentDate) {
       currentTasks.push(task);
     }
-    displayCurrentTasks();
   }
+  displayCurrentTasks();
 }
 
-function getAllTasks() {
+function getWeekTasks() {
   currentTasks.length = 0;
+  const thisWeek = currentWeek();
   for (let task of tasks) {
-    currentTasks.push(task);
+    for (let i = 0; i < thisWeek.length; i++) {
+      if (task.date === thisWeek[i]) {
+        currentTasks.push(task);
+      }
+    }
   }
   displayCurrentTasks();
 }
