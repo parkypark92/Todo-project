@@ -43,12 +43,27 @@ img {
     filter: invert(66%) sepia(11%) saturate(2505%) hue-rotate(71deg) brightness(95%) contrast(89%);
 }
 
-#new-project:hover, #new-task:hover, h3:hover {
+#new-project:hover, #new-task:hover, .display-selector:hover {
     cursor: pointer;
 }
 
-h3:hover {
+.display-selector:hover {
     background-color: rgb(207, 207, 207);
+}
+
+.display-selector {
+    display: flex;
+    justify-content: space-between;
+}
+
+.counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgb(1, 189, 1);
+    min-width: 22px;
+    border-radius: 50%;
 }
 
 main {

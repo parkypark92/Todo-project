@@ -9,7 +9,7 @@ import {
   display,
   createTaskDisplay,
 } from "./dom";
-export { activate, displayChecker, setPriorityColor };
+export { activate, displayChecker, setPriorityColor, currentDate, currentWeek };
 
 let currentDate = format(new Date(), "yyyy-MM-dd");
 

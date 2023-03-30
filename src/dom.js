@@ -1,7 +1,13 @@
 import { format } from "date-fns";
 import { Task, tasks, currentTasks } from "./tasks";
 import { Project, projects, projectHeadings } from "./projects";
-import { activate, displayChecker, setPriorityColor } from "./display";
+import {
+  activate,
+  displayChecker,
+  setPriorityColor,
+  currentDate,
+  currentWeek,
+} from "./display";
 export {
   createTaskDisplay,
   taskDisplays,
@@ -35,10 +41,19 @@ const confirmEdit = document.querySelector(".confirm-edit");
 const cancelEdit = document.querySelector(".cancel-edit");
 const editError = document.querySelector(".edit-error");
 const tasksToday = document.querySelector("#tasks-today");
+const todayCounter = document.querySelector(".today");
 const tasksThisWeek = document.querySelector("#tasks-this-week");
+const weekCounter = document.querySelector(".this-week");
 const allTasks = document.querySelector("#all-tasks");
+const allCounter = document.querySelector(".all");
 const completedTasks = document.querySelector("#completed-tasks");
+const completeCounter = document.querySelector(".complete");
 const taskDisplays = [tasksToday, tasksThisWeek, allTasks, completedTasks];
+
+allCounter.textContent = "0";
+todayCounter.textContent = "0";
+weekCounter.textContent = "0";
+completeCounter.textContent = "0";
 
 newTaskButton.addEventListener("click", () => displayInputWindow(taskInput));
 addTaskButton.addEventListener("click", addNewTask);
@@ -72,6 +87,7 @@ function addNewTask() {
   );
   tasks.push(newTask);
   newTask.id = tasks.indexOf(newTask);
+  updateCounters();
   displayChecker();
   exitInputWindow(taskInput, taskForm);
   console.log(newTask);
@@ -91,6 +107,44 @@ function createTaskDisplay(task) {
   deleteButton.setAttribute("data-index", tasks.indexOf(task));
   deleteButton.addEventListener("click", deleteTask);
   setPriorityColor(task, taskDiv);
+}
+
+function updateCounters() {
+  updateAllCounter();
+  updateTodayCounter();
+  updateThisWeekCounter();
+  // updateCompleteCounter();
+}
+
+function updateAllCounter() {
+  if (tasks.length === 0) {
+    allCounter.textContent = "0";
+  } else {
+    allCounter.textContent = `${tasks.length}`;
+  }
+}
+
+function updateTodayCounter() {
+  let counter = 0;
+  for (let task of tasks) {
+    if (task.date === currentDate) {
+      counter++;
+    }
+  }
+  todayCounter.textContent = `${counter}`;
+}
+
+function updateThisWeekCounter() {
+  let counter = 0;
+  let week = currentWeek();
+  for (let task of tasks) {
+    for (let date of week) {
+      if (task.date === date) {
+        counter++;
+      }
+    }
+  }
+  weekCounter.textContent = `${counter}`;
 }
 
 tasksToday.addEventListener("click", activate);
@@ -142,6 +196,7 @@ function editTaskValues() {
   taskDisplay.querySelector(".task-date").textContent = editDate.value;
   taskDisplay.querySelector(".task-priority").textContent = editPriority.value;
   taskDisplay.querySelector(".task-project").textContent = editProject.value;
+  updateCounters();
   displayChecker();
   exitInputWindow(editTask, editForm);
 }
@@ -149,6 +204,7 @@ function editTaskValues() {
 function deleteTask(e) {
   tasks.splice(e.target.getAttribute("data-index"), 1);
   reassignIndex();
+  updateCounters();
   displayChecker();
 }
 

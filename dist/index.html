@@ -20,10 +20,22 @@
                     <div id="new-task"><img src="/src/icons/plus-circle.svg" alt="" width="30"></div>
                 </div>
                 <div class="tasks-breakdown">
-                    <h3 id="all-tasks">All</h3>
-                    <h3 id="tasks-today">Today</h3>
-                    <h3 id="tasks-this-week">This Week</h3>
-                    <h3 id="completed-tasks">Complete</h3>
+                    <div id="all-tasks" class="display-selector">
+                        <h3>All</h3>
+                        <div class="counter all"></div>
+                    </div>
+                    <div id="tasks-today" class="display-selector">
+                        <h3>Today</h3>
+                        <div class="counter today"></div>
+                    </div>
+                    <div id="tasks-this-week" class="display-selector">
+                        <h3>This Week</h3>
+                        <div class="counter this-week"></div>
+                    </div>
+                    <div id="completed-tasks" class="display-selector">
+                        <h3>Complete</h3>
+                        <div class="counter complete"></div>
+                    </div>
                 </div>
             </div>
             <div class="projects">
