@@ -24,6 +24,7 @@ const taskPriority = document.querySelector("#priority");
 const taskProject = document.querySelector("#project-select");
 const addTaskButton = document.querySelector(".add-task");
 const cancelTaskButton = document.querySelector(".cancel-task");
+const inputError = document.querySelector(".input-error");
 const editTask = document.querySelector(".task-edit");
 const editForm = document.querySelector("#task-edit-form");
 const editDescription = document.querySelector("#edit-description");
@@ -32,6 +33,7 @@ const editProject = document.querySelector("#edit-project-select");
 const editPriority = document.querySelector("#edit-priority");
 const confirmEdit = document.querySelector(".confirm-edit");
 const cancelEdit = document.querySelector(".cancel-edit");
+const editError = document.querySelector(".edit-error");
 const tasksToday = document.querySelector("#tasks-today");
 const tasksThisWeek = document.querySelector("#tasks-this-week");
 const allTasks = document.querySelector("#all-tasks");
@@ -44,7 +46,24 @@ cancelTaskButton.addEventListener("click", () =>
   exitInputWindow(taskInput, taskForm)
 );
 
+function noInputValueMessage() {
+  if (!taskDescription.value) {
+    inputError.textContent = "Please enter description!";
+  }
+  if (!taskDate.value) {
+    inputError.textContent = "Please enter date!";
+  }
+  if (!taskDescription.value && !taskDate.value) {
+    inputError.textContent = "Please enter description and date!";
+  }
+}
+
 function addNewTask() {
+  if (!taskDate.value || !taskDescription.value) {
+    noInputValueMessage();
+    return;
+  }
+  inputError.textContent = "";
   let newTask = Task(
     taskDescription.value,
     taskDate.value,
@@ -55,6 +74,7 @@ function addNewTask() {
   newTask.id = tasks.indexOf(newTask);
   displayChecker();
   exitInputWindow(taskInput, taskForm);
+  console.log(newTask);
 }
 
 function createTaskDisplay(task) {
@@ -92,7 +112,23 @@ function displayEditInput() {
 confirmEdit.addEventListener("click", editTaskValues);
 cancelEdit.addEventListener("click", () => exitInputWindow(editTask, editForm));
 
+function noEditValueMessage() {
+  if (!editDescription.value) {
+    editError.textContent = "Please enter description!";
+  }
+  if (!editDate.value) {
+    editError.textContent = "Please enter date!";
+  }
+  if (!editDescription.value && !editDate.value) {
+    editError.textContent = "Please enter description and date!";
+  }
+}
+
 function editTaskValues() {
+  if (!editDescription.value || !editDate.value) {
+    noEditValueMessage();
+    return;
+  }
   tasks[this.getAttribute("data-index")].description = editDescription.value;
   tasks[this.getAttribute("data-index")].date = editDate.value;
   tasks[this.getAttribute("data-index")].project = editProject.value;
@@ -175,6 +211,8 @@ function exitInputWindow(input, form) {
   input.classList.add("hidden");
   mainWrapper.classList.remove("blur");
   form.reset();
+  inputError.textContent = "";
+  editError.textContent = "";
 }
 
 function createDiv(divClass, divContent, append) {
