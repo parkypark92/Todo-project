@@ -44,11 +44,11 @@
         <form action="#" id="task-form">
             <div>
                 <label for="description">Task description:</label>
-                <input type="text" name="description" id="description">
+                <input type="text" name="description" id="description" required>
             </div>
             <div>
                 <label for="date">Due Date:</label>
-                <input type="date" name="date" id="date">
+                <input type="date" name="date" id="date" required>
             </div>
             <label for="priority">Priority:</label>
             <div>
@@ -68,6 +68,7 @@
                 <button type="button" class="add-task">Add</button>
                 <button type="button" class="cancel-task">Cancel</button>
             </div>
+            <p class="input-error"></p>
         </form>
     </div>
     <!-- TASK EDIT -->
@@ -75,11 +76,11 @@
         <form action="#" id="task-edit-form">
             <div>
                 <label for="edit-description">Task description:</label>
-                <input type="text" name="edit-description" id="edit-description">
+                <input type="text" name="edit-description" id="edit-description" required>
             </div>
             <div>
                 <label for="edit-date">Due Date:</label>
-                <input type="date" name="edit-date" id="edit-date">
+                <input type="date" name="edit-date" id="edit-date" required>
             </div>
             <label for="edit-priority">Priority</label>
             <div>
@@ -99,6 +100,7 @@
                 <button type="button" class="confirm-edit" data-index="">CONFIRM</button>
                 <button type="button" class="cancel-edit">Cancel</button>
             </div>
+            <p class="edit-error"></p>
         </form>
     </div>
     <!-- PROJECT INPUT -->
