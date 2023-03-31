@@ -1,6 +1,7 @@
-export { Task, tasks, currentTasks };
+export { Task, tasks, currentTasks, tasksComplete };
 const tasks = [];
 let currentTasks = [];
+let tasksComplete = [];
 
 const Task = (description, date, project, priority) => {
   return {
@@ -8,8 +9,8 @@ const Task = (description, date, project, priority) => {
     date,
     project,
     priority,
-    complete: false,
     id: "",
+    complete: false,
     setName: function (newName) {
       this.description = newName;
     },
@@ -21,9 +22,6 @@ const Task = (description, date, project, priority) => {
     },
     setPriority: function (newPriority) {
       this.priority = newPriority;
-    },
-    setComplete: function (newValue) {
-      this.complete = newValue;
     },
   };
 };

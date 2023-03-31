@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { Task, tasks, currentTasks } from "./tasks";
+import { Task, tasks, currentTasks, tasksComplete } from "./tasks";
 import { Project, projects, projectHeadings } from "./projects";
 import {
   activate,
@@ -14,6 +14,7 @@ export {
   tasksToday,
   allTasks,
   tasksThisWeek,
+  completedTasks,
   display,
 };
 
@@ -90,7 +91,6 @@ function addNewTask() {
   updateCounters();
   displayChecker();
   exitInputWindow(taskInput, taskForm);
-  console.log(newTask);
 }
 
 function createTaskDisplay(task) {
@@ -100,6 +100,9 @@ function createTaskDisplay(task) {
   createDiv("task-date", format(new Date(task.date), "dd-MM-yyyy"), taskDiv);
   createDiv("task-priority", task.priority, taskDiv);
   createDiv("task-project", task.project, taskDiv);
+  const completeButton = createButton("complete-button", "COMPLETE", taskDiv);
+  completeButton.setAttribute("data-index", tasks.indexOf(task));
+  completeButton.addEventListener("click", setTaskComplete);
   const editButton = createButton("task-edit-button", "EDIT", taskDiv);
   editButton.setAttribute("data-index", tasks.indexOf(task));
   editButton.addEventListener("click", displayEditInput);
@@ -113,7 +116,7 @@ function updateCounters() {
   updateAllCounter();
   updateTodayCounter();
   updateThisWeekCounter();
-  // updateCompleteCounter();
+  updateCompleteCounter();
 }
 
 function updateAllCounter() {
@@ -147,11 +150,14 @@ function updateThisWeekCounter() {
   weekCounter.textContent = `${counter}`;
 }
 
+function updateCompleteCounter() {
+  completeCounter.textContent = tasksComplete.length;
+}
+
 tasksToday.addEventListener("click", activate);
-
 allTasks.addEventListener("click", activate);
-
 tasksThisWeek.addEventListener("click", activate);
+completedTasks.addEventListener("click", activate);
 
 // EDIT TASK
 function displayEditInput() {
@@ -202,16 +208,25 @@ function editTaskValues() {
 }
 
 function deleteTask(e) {
-  tasks.splice(e.target.getAttribute("data-index"), 1);
+  const complete = tasks.splice(e.target.getAttribute("data-index"), 1);
   reassignIndex();
   updateCounters();
   displayChecker();
+  return complete;
 }
 
 function reassignIndex() {
   for (let task of tasks) {
     task.id = tasks.indexOf(task);
   }
+}
+
+function setTaskComplete(e) {
+  const [taskDone] = deleteTask(e);
+  console.log(taskDone);
+  taskDone.complete = true;
+  tasksComplete.push(taskDone);
+  updateCounters();
 }
 
 // PROJECTS

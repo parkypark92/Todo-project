@@ -1,5 +1,5 @@
 import { format, addDays, startOfWeek } from "date-fns";
-import { tasks, currentTasks } from "./tasks";
+import { tasks, currentTasks, tasksComplete } from "./tasks";
 import { projectHeadings } from "./projects";
 import {
   taskDisplays,
@@ -8,6 +8,7 @@ import {
   tasksThisWeek,
   display,
   createTaskDisplay,
+  completedTasks,
 } from "./dom";
 export { activate, displayChecker, setPriorityColor, currentDate, currentWeek };
 
@@ -50,6 +51,9 @@ function displayChecker() {
   if (tasksThisWeek.classList.contains("active")) {
     getWeekTasks();
   }
+  if (completedTasks.classList.contains("active")) {
+    getCompletedTasks();
+  }
 }
 
 function getAllTasks() {
@@ -80,6 +84,15 @@ function getWeekTasks() {
       }
     }
   }
+  displayCurrentTasks();
+}
+
+function getCompletedTasks() {
+  currentTasks.length = 0;
+  for (let task of tasksComplete) {
+    currentTasks.push(task);
+  }
+  console.log(currentTasks);
   displayCurrentTasks();
 }
 
