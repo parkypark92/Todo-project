@@ -10,6 +10,7 @@ import {
 } from "./display";
 export {
   createTaskDisplay,
+  createCompletedTaskDisplays,
   taskDisplays,
   tasksToday,
   allTasks,
@@ -110,6 +111,16 @@ function createTaskDisplay(task) {
   deleteButton.setAttribute("data-index", tasks.indexOf(task));
   deleteButton.addEventListener("click", deleteTask);
   setPriorityColor(task, taskDiv);
+}
+
+function createCompletedTaskDisplays(task) {
+  const completeDiv = createDiv("complete-display", "", display);
+  createDiv("complete-description", task.description, completeDiv);
+  createDiv(
+    "complete-date",
+    `Completed on ${format(new Date(), "dd-MM-yyyy")}`,
+    completeDiv
+  );
 }
 
 function updateCounters() {
@@ -223,7 +234,6 @@ function reassignIndex() {
 
 function setTaskComplete(e) {
   const [taskDone] = deleteTask(e);
-  console.log(taskDone);
   taskDone.complete = true;
   tasksComplete.push(taskDone);
   updateCounters();

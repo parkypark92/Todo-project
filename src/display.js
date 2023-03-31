@@ -1,4 +1,4 @@
-import { format, addDays, startOfWeek } from "date-fns";
+import { format, addDays, startOfWeek, nextThursday } from "date-fns";
 import { tasks, currentTasks, tasksComplete } from "./tasks";
 import { projectHeadings } from "./projects";
 import {
@@ -8,6 +8,7 @@ import {
   tasksThisWeek,
   display,
   createTaskDisplay,
+  createCompletedTaskDisplays,
   completedTasks,
 } from "./dom";
 export { activate, displayChecker, setPriorityColor, currentDate, currentWeek };
@@ -22,7 +23,9 @@ let currentWeek = function () {
     let nextDay = addDays(day, 1);
     week.push(nextDay);
   }
-  const formattedWeek = week.map((elem) => format(new Date(elem), "yyy-MM-dd"));
+  const formattedWeek = week.map((elem) =>
+    format(new Date(elem), "yyyy-MM-dd")
+  );
   return formattedWeek;
 };
 
@@ -92,8 +95,10 @@ function getCompletedTasks() {
   for (let task of tasksComplete) {
     currentTasks.push(task);
   }
-  console.log(currentTasks);
-  displayCurrentTasks();
+  display.textContent = "";
+  for (let task of currentTasks) {
+    createCompletedTaskDisplays(task);
+  }
 }
 
 function displayCurrentTasks() {

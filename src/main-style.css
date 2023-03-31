@@ -104,6 +104,11 @@ main {
     background-color: green;
 }
 
+.complete-display {
+    height: 100px;
+    background-color: rgb(111, 201, 111);
+}
+
 .active {
     background-color: rgb(207, 207, 207);
 
