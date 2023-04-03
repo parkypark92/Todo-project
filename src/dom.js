@@ -165,10 +165,18 @@ function updateCompleteCounter() {
   completeCounter.textContent = tasksComplete.length;
 }
 
-tasksToday.addEventListener("click", activate);
-allTasks.addEventListener("click", activate);
-tasksThisWeek.addEventListener("click", activate);
-completedTasks.addEventListener("click", activate);
+tasksToday.addEventListener("click", (e) => {
+  activate(e);
+});
+allTasks.addEventListener("click", (e) => {
+  activate(e);
+});
+tasksThisWeek.addEventListener("click", (e) => {
+  activate(e);
+});
+completedTasks.addEventListener("click", (e) => {
+  activate(e);
+});
 
 // EDIT TASK
 function displayEditInput() {
@@ -246,6 +254,7 @@ const projectForm = document.querySelector(".project-form");
 const projectName = document.querySelector("#project-name");
 const addProjectButton = document.querySelector(".add-project");
 const cancelProjectButton = document.querySelector(".cancel-project");
+const projectError = document.querySelector(".project-error");
 const projectsBreakdown = document.querySelector(".projects-breakdown");
 
 newProjectButton.addEventListener("click", () =>
@@ -256,11 +265,22 @@ cancelProjectButton.addEventListener("click", () =>
 );
 addProjectButton.addEventListener("click", addNewProject);
 
+function addClickEventToProject(projectTab) {
+  projectTab.addEventListener("click", (e) => {
+    activate(e);
+  });
+}
+
+function noProjectInputMessage() {
+  projectError.textContent = "Please enter a Project Name!";
+}
+
 function addProjectToSidebar(name) {
   const projectHeading = document.createElement("h3");
-  projectHeading.textContent = name.toUpperCase();
+  projectHeading.textContent = name;
   projectsBreakdown.appendChild(projectHeading);
   projectHeadings.push(projectHeading);
+  addClickEventToProject(projectHeading);
 }
 
 function addProjectToSelection(newOption) {
@@ -273,11 +293,15 @@ function addProjectToSelection(newOption) {
 }
 
 function addNewProject() {
-  const newProject = Project(projectName.value);
+  if (!projectName.value) {
+    noProjectInputMessage();
+    return;
+  }
+  const newProject = Project(projectName.value.toUpperCase());
   projects.push(newProject);
   newProject.id = projects.indexOf(newProject);
-  addProjectToSidebar(projectName.value);
-  addProjectToSelection(projectName.value);
+  addProjectToSidebar(projectName.value.toUpperCase());
+  addProjectToSelection(projectName.value.toUpperCase());
   exitInputWindow(projectInput, projectForm);
   console.log(projects);
 }
@@ -294,6 +318,7 @@ function exitInputWindow(input, form) {
   form.reset();
   inputError.textContent = "";
   editError.textContent = "";
+  projectError.textContent = "";
 }
 
 function createDiv(divClass, divContent, append) {

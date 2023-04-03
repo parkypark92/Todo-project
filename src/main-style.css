@@ -88,7 +88,7 @@ main {
     flex-direction: column;
 }
 
-.input-error, .edit-error {
+.input-error, .edit-error, .project-error {
     color: red;
 }
 

@@ -29,9 +29,9 @@ let currentWeek = function () {
   return formattedWeek;
 };
 
-function activate() {
+function activate(e) {
   deactivate();
-  this.classList.add("active");
+  e.target.classList.add("active");
   displayChecker();
 }
 
@@ -47,15 +47,14 @@ function deactivate() {
 function displayChecker() {
   if (tasksToday.classList.contains("active")) {
     getTodaysTasks();
-  }
-  if (allTasks.classList.contains("active")) {
+  } else if (allTasks.classList.contains("active")) {
     getAllTasks();
-  }
-  if (tasksThisWeek.classList.contains("active")) {
+  } else if (tasksThisWeek.classList.contains("active")) {
     getWeekTasks();
-  }
-  if (completedTasks.classList.contains("active")) {
+  } else if (completedTasks.classList.contains("active")) {
     getCompletedTasks();
+  } else {
+    getProjectTasks();
   }
 }
 
@@ -99,6 +98,22 @@ function getCompletedTasks() {
   for (let task of currentTasks) {
     createCompletedTaskDisplays(task);
   }
+}
+
+function getProjectTasks() {
+  const projectName = projectHeadings.find((project) =>
+    project.classList.contains("active")
+  );
+  if (projectName === undefined) {
+    return;
+  }
+  currentTasks.length = 0;
+  for (let task of tasks) {
+    if (task.project === projectName.textContent) {
+      currentTasks.push(task);
+    }
+  }
+  displayCurrentTasks();
 }
 
 function displayCurrentTasks() {
