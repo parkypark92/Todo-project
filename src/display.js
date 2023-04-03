@@ -1,6 +1,6 @@
 import { format, addDays, startOfWeek, nextThursday } from "date-fns";
 import { tasks, currentTasks, tasksComplete } from "./tasks";
-import { projectHeadings } from "./projects";
+import { projectHeadings, projectTabs } from "./projects";
 import {
   taskDisplays,
   tasksToday,
@@ -39,7 +39,7 @@ function deactivate() {
   for (let display of taskDisplays) {
     display.classList.remove("active");
   }
-  for (let project of projectHeadings) {
+  for (let project of projectTabs) {
     project.classList.remove("active");
   }
 }
@@ -101,8 +101,9 @@ function getCompletedTasks() {
 }
 
 function getProjectTasks() {
+  console.log(projectHeadings);
   const projectName = projectHeadings.find((project) =>
-    project.classList.contains("active")
+    project.parentNode.classList.contains("active")
   );
   if (projectName === undefined) {
     return;
@@ -114,6 +115,13 @@ function getProjectTasks() {
     }
   }
   displayCurrentTasks();
+  createProjectHeader(projectName.textContent);
+}
+
+function createProjectHeader(project) {
+  const header = document.createElement("h2");
+  header.textContent = project;
+  display.prepend(header);
 }
 
 function displayCurrentTasks() {

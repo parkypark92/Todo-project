@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { Task, tasks, currentTasks, tasksComplete } from "./tasks";
-import { Project, projects, projectHeadings } from "./projects";
+import { Project, projects, projectHeadings, projectTabs } from "./projects";
 import {
   activate,
   displayChecker,
@@ -128,6 +128,7 @@ function updateCounters() {
   updateTodayCounter();
   updateThisWeekCounter();
   updateCompleteCounter();
+  updateProjectCounters();
 }
 
 function updateAllCounter() {
@@ -163,6 +164,18 @@ function updateThisWeekCounter() {
 
 function updateCompleteCounter() {
   completeCounter.textContent = tasksComplete.length;
+}
+
+function updateProjectCounters() {
+  for (let heading of projectHeadings) {
+    let counter = 0;
+    for (let task of tasks) {
+      if (task.project === heading.textContent) {
+        counter++;
+      }
+    }
+    heading.nextElementSibling.textContent = counter;
+  }
 }
 
 tasksToday.addEventListener("click", (e) => {
@@ -212,7 +225,6 @@ function editTaskValues() {
   tasks[this.getAttribute("data-index")].date = editDate.value;
   tasks[this.getAttribute("data-index")].project = editProject.value;
   tasks[this.getAttribute("data-index")].priority = editPriority.value;
-  console.log(currentTasks);
   const taskDisplay = document.querySelector(
     `[data-index="${this.getAttribute("data-index")}"]`
   );
@@ -276,11 +288,15 @@ function noProjectInputMessage() {
 }
 
 function addProjectToSidebar(name) {
+  const projectDiv = createDiv("display-selector", "", projectsBreakdown);
   const projectHeading = document.createElement("h3");
   projectHeading.textContent = name;
-  projectsBreakdown.appendChild(projectHeading);
+  projectDiv.appendChild(projectHeading);
+  const projectCounter = createDiv("counter", "0", projectDiv);
+  projectCounter.classList.add(`${name}`);
   projectHeadings.push(projectHeading);
-  addClickEventToProject(projectHeading);
+  projectTabs.push(projectDiv);
+  addClickEventToProject(projectDiv);
 }
 
 function addProjectToSelection(newOption) {
