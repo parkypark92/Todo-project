@@ -25,3 +25,10 @@ const Task = (description, date, project, priority) => {
     },
   };
 };
+
+const testTask1 = Task("test", "2023-04-04", "none", "1-high");
+tasks.push(testTask1);
+const testTask2 = Task("test", "2023-04-04", "none", "2-medium");
+tasks.push(testTask2);
+const testTask3 = Task("test", "2023-04-04", "none", "3-low");
+tasks.push(testTask3);

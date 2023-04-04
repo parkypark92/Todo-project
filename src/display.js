@@ -11,7 +11,14 @@ import {
   createCompletedTaskDisplays,
   completedTasks,
 } from "./dom";
-export { activate, displayChecker, setPriorityColor, currentDate, currentWeek };
+export {
+  activate,
+  displayChecker,
+  setPriorityColor,
+  currentDate,
+  currentWeek,
+  getAllTasks,
+};
 
 let currentDate = format(new Date(), "yyyy-MM-dd");
 
@@ -31,7 +38,7 @@ let currentWeek = function () {
 
 function activate(e) {
   deactivate();
-  e.target.classList.add("active");
+  e.currentTarget.classList.add("active");
   displayChecker();
 }
 
@@ -101,7 +108,6 @@ function getCompletedTasks() {
 }
 
 function getProjectTasks() {
-  console.log(projectHeadings);
   const projectName = projectHeadings.find((project) =>
     project.parentNode.classList.contains("active")
   );
@@ -171,6 +177,7 @@ function orderDates(obj) {
 
 function createDateHeader(date) {
   const dateHeader = document.createElement("h2");
+  dateHeader.classList.add("date-header");
   dateHeader.textContent = format(new Date(date), "EEE, dd MMM yyyy");
   display.appendChild(dateHeader);
 }

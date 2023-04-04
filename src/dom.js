@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { Task, tasks, currentTasks, tasksComplete } from "./tasks";
+import { Task, tasks, tasksComplete } from "./tasks";
 import { Project, projects, projectHeadings, projectTabs } from "./projects";
 import {
   activate,
@@ -7,6 +7,7 @@ import {
   setPriorityColor,
   currentDate,
   currentWeek,
+  getAllTasks,
 } from "./display";
 export {
   createTaskDisplay,
@@ -97,20 +98,22 @@ function addNewTask() {
 function createTaskDisplay(task) {
   const taskDiv = createDiv("task-display", "", display);
   taskDiv.setAttribute("data-index", tasks.indexOf(task));
+  const priorityColor = createDiv("priority-color", "", taskDiv);
   createDiv("task-description", task.description, taskDiv);
-  createDiv("task-date", format(new Date(task.date), "dd-MM-yyyy"), taskDiv);
-  createDiv("task-priority", task.priority, taskDiv);
-  createDiv("task-project", task.project, taskDiv);
-  const completeButton = createButton("complete-button", "COMPLETE", taskDiv);
+  // createDiv("task-date", format(new Date(task.date), "dd-MM-yyyy"), taskDiv);
+  // createDiv("task-priority", task.priority, taskDiv);
+  // createDiv("task-project", task.project, taskDiv);
+  const buttonDiv = createDiv("task-display-buttons", "", taskDiv);
+  const completeButton = createButton("complete-button", "COMPLETE", buttonDiv);
   completeButton.setAttribute("data-index", tasks.indexOf(task));
   completeButton.addEventListener("click", setTaskComplete);
-  const editButton = createButton("task-edit-button", "EDIT", taskDiv);
+  const editButton = createButton("task-edit-button", "EDIT", buttonDiv);
   editButton.setAttribute("data-index", tasks.indexOf(task));
   editButton.addEventListener("click", displayEditInput);
-  const deleteButton = createButton("task-remove-button", "DELETE", taskDiv);
+  const deleteButton = createButton("task-remove-button", "DELETE", buttonDiv);
   deleteButton.setAttribute("data-index", tasks.indexOf(task));
   deleteButton.addEventListener("click", deleteTask);
-  setPriorityColor(task, taskDiv);
+  setPriorityColor(task, priorityColor);
 }
 
 function createCompletedTaskDisplays(task) {
@@ -319,7 +322,6 @@ function addNewProject() {
   addProjectToSidebar(projectName.value.toUpperCase());
   addProjectToSelection(projectName.value.toUpperCase());
   exitInputWindow(projectInput, projectForm);
-  console.log(projects);
 }
 
 // DOM
@@ -353,3 +355,8 @@ function createButton(buttonClass, content, append) {
   append.appendChild(newButton);
   return newButton;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  getAllTasks();
+  updateCounters();
+});
