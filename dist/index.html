@@ -14,36 +14,38 @@
             <h1>My Todo</h1>
         </header>
         <nav>
-            <div class="tasks">
-                <div class="tasks-header">
-                    <h2>Tasks</h2>
-                    <div id="new-task"><img src="/src/icons/plus-circle.svg" alt="" width="30"></div>
+            <div class="sticky-nav">
+                <div class="tasks">
+                    <div class="tasks-header">
+                        <h2>Tasks</h2>
+                        <div id="new-task"><img src="/src/icons/plus-circle.svg" alt="" width="30"></div>
+                    </div>
+                    <div class="tasks-breakdown">
+                        <div id="all-tasks" class="display-selector active">
+                            <h3>All</h3>
+                            <div class="counter all"></div>
+                        </div>
+                        <div id="tasks-today" class="display-selector">
+                            <h3>Today</h3>
+                            <div class="counter today"></div>
+                        </div>
+                        <div id="tasks-this-week" class="display-selector">
+                            <h3>This Week</h3>
+                            <div class="counter this-week"></div>
+                        </div>
+                        <div id="completed-tasks" class="display-selector">
+                            <h3>Complete</h3>
+                            <div class="counter complete"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="tasks-breakdown">
-                    <div id="all-tasks" class="display-selector active">
-                        <h3>All</h3>
-                        <div class="counter all"></div>
+                <div class="projects">
+                    <div class="projects-header">
+                        <h2>Projects</h2>
+                        <div><img src="/src/icons/plus-circle.svg" alt="" width="30" id="new-project"></div>
                     </div>
-                    <div id="tasks-today" class="display-selector">
-                        <h3>Today</h3>
-                        <div class="counter today"></div>
+                    <div class="projects-breakdown">
                     </div>
-                    <div id="tasks-this-week" class="display-selector">
-                        <h3>This Week</h3>
-                        <div class="counter this-week"></div>
-                    </div>
-                    <div id="completed-tasks" class="display-selector">
-                        <h3>Complete</h3>
-                        <div class="counter complete"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="projects">
-                <div class="projects-header">
-                    <h2>Projects</h2>
-                    <div><img src="/src/icons/plus-circle.svg" alt="" width="30" id="new-project"></div>
-                </div>
-                <div class="projects-breakdown">
                 </div>
             </div>
         </nav>

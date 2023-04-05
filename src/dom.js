@@ -233,9 +233,6 @@ function editTaskValues() {
   );
   taskDisplay.querySelector(".task-description").textContent =
     editDescription.value;
-  taskDisplay.querySelector(".task-date").textContent = editDate.value;
-  taskDisplay.querySelector(".task-priority").textContent = editPriority.value;
-  taskDisplay.querySelector(".task-project").textContent = editProject.value;
   updateCounters();
   displayChecker();
   exitInputWindow(editTask, editForm);

@@ -19,21 +19,31 @@ header {
     padding: 20px;
     background-color: #e0829d;
     grid-column: 1 / 3;
+    position: sticky;
+    top: 0px;
 }
 
 nav {
     background-color: rgb(243, 243, 243);
+}
+
+.sticky-nav {
+    position: sticky;
+    top: 70px;
     padding: 20px;
 }
 
 .tasks {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(201, 201, 201);
 }
 
 .tasks-header, .projects-header {
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
     margin-bottom: 15px;
+    padding-right: 6px;
 }
 
 .tasks-breakdown, .projects-breakdown {
@@ -57,16 +67,20 @@ img {
 .display-selector {
     display: flex;
     justify-content: space-between;
+    padding: 0px 10px;
+    border-radius: 10px;
+}
+
+#completed-tasks {
+    margin-top: 20px;
 }
 
 .counter {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    background-color: #86b9b0;
+    color: rgb(114, 114, 114);
     min-width: 22px;
-    border-radius: 50%;
 }
 
 main {
@@ -74,8 +88,10 @@ main {
 }
 
 .date-header {
+    width: 230px;
     padding-left: 20px;
     margin-bottom: 20px;
+    border-bottom: 1px solid rgb(201, 201, 201);
 }
 
 .task-display {
