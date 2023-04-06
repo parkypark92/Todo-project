@@ -1,4 +1,7 @@
 import { format } from "date-fns";
+import binIcon from "./icons/bin.png";
+import editIcon from "./icons/editing.png";
+import completeIcon from "./icons/checked.png";
 import { Task, tasks, tasksComplete } from "./tasks";
 import { Project, projects, projectHeadings, projectTabs } from "./projects";
 import {
@@ -18,6 +21,7 @@ export {
   tasksThisWeek,
   completedTasks,
   display,
+  mainHeading,
 };
 
 const mainWrapper = document.querySelector(".main-wrapper");
@@ -52,6 +56,7 @@ const allCounter = document.querySelector(".all");
 const completedTasks = document.querySelector("#completed-tasks");
 const completeCounter = document.querySelector(".complete");
 const taskDisplays = [tasksToday, tasksThisWeek, allTasks, completedTasks];
+const mainHeading = document.querySelector(".main-heading");
 
 allCounter.textContent = "0";
 todayCounter.textContent = "0";
@@ -100,17 +105,14 @@ function createTaskDisplay(task) {
   taskDiv.setAttribute("data-index", tasks.indexOf(task));
   const priorityColor = createDiv("priority-color", "", taskDiv);
   createDiv("task-description", task.description, taskDiv);
-  // createDiv("task-date", format(new Date(task.date), "dd-MM-yyyy"), taskDiv);
-  // createDiv("task-priority", task.priority, taskDiv);
-  // createDiv("task-project", task.project, taskDiv);
   const buttonDiv = createDiv("task-display-buttons", "", taskDiv);
-  const completeButton = createButton("complete-button", "COMPLETE", buttonDiv);
+  const completeButton = createIcon(completeIcon, buttonDiv);
   completeButton.setAttribute("data-index", tasks.indexOf(task));
   completeButton.addEventListener("click", setTaskComplete);
-  const editButton = createButton("task-edit-button", "EDIT", buttonDiv);
+  const editButton = createIcon(editIcon, buttonDiv);
   editButton.setAttribute("data-index", tasks.indexOf(task));
   editButton.addEventListener("click", displayEditInput);
-  const deleteButton = createButton("task-remove-button", "DELETE", buttonDiv);
+  const deleteButton = createIcon(binIcon, buttonDiv);
   deleteButton.setAttribute("data-index", tasks.indexOf(task));
   deleteButton.addEventListener("click", deleteTask);
   setPriorityColor(task, priorityColor);
@@ -351,6 +353,15 @@ function createButton(buttonClass, content, append) {
   newButton.classList.add(buttonClass);
   append.appendChild(newButton);
   return newButton;
+}
+
+function createIcon(icon, append) {
+  const newIcon = new Image();
+  newIcon.src = icon;
+  newIcon.style.width = "40px";
+  newIcon.classList.add("task-icon");
+  append.appendChild(newIcon);
+  return newIcon;
 }
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -1,4 +1,4 @@
-import { format, addDays, startOfWeek, nextThursday } from "date-fns";
+import { format, addDays, startOfWeek } from "date-fns";
 import { tasks, currentTasks, tasksComplete } from "./tasks";
 import { projectHeadings, projectTabs } from "./projects";
 import {
@@ -10,6 +10,7 @@ import {
   createTaskDisplay,
   createCompletedTaskDisplays,
   completedTasks,
+  mainHeading,
 } from "./dom";
 export {
   activate,
@@ -70,6 +71,7 @@ function getAllTasks() {
   for (let task of tasks) {
     currentTasks.push(task);
   }
+  mainHeading.textContent = "ALL TASKS";
   displayCurrentTasks();
 }
 
@@ -80,6 +82,7 @@ function getTodaysTasks() {
       currentTasks.push(task);
     }
   }
+  mainHeading.textContent = "TODAY'S TASKS";
   displayCurrentTasks();
 }
 
@@ -93,6 +96,7 @@ function getWeekTasks() {
       }
     }
   }
+  mainHeading.textContent = "THIS WEEK'S TASKS";
   displayCurrentTasks();
 }
 
@@ -105,6 +109,7 @@ function getCompletedTasks() {
   for (let task of currentTasks) {
     createCompletedTaskDisplays(task);
   }
+  mainHeading.textContent = "COMPLETED TASKS";
 }
 
 function getProjectTasks() {
@@ -120,14 +125,8 @@ function getProjectTasks() {
       currentTasks.push(task);
     }
   }
+  mainHeading.textContent = projectName.textContent;
   displayCurrentTasks();
-  createProjectHeader(projectName.textContent);
-}
-
-function createProjectHeader(project) {
-  const header = document.createElement("h2");
-  header.textContent = project;
-  display.prepend(header);
 }
 
 function displayCurrentTasks() {
