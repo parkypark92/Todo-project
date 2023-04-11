@@ -56,6 +56,7 @@
     <!-- HIDDEN WINDOWS -->
     <!-- TASK INPUT -->
     <div class="task-input hidden">
+        <h2>NEW TASK</h2>
         <form action="#" id="task-form">
             <div>
                 <label for="description">Task description:</label>
@@ -65,8 +66,8 @@
                 <label for="date">Due Date:</label>
                 <input type="date" name="date" id="date" required>
             </div>
-            <label for="priority">Priority:</label>
             <div>
+                <label for="priority">Priority:</label>
                 <select name="priority" id="priority">
                     <option value="1-high">High</option>
                     <option value="2-medium">Medium</option>
@@ -88,6 +89,7 @@
     </div>
     <!-- TASK EDIT -->
     <div class="task-edit hidden">
+        <h2>EDIT TASK</h2>
         <form action="#" id="task-edit-form">
             <div>
                 <label for="edit-description">Task description:</label>
@@ -97,8 +99,9 @@
                 <label for="edit-date">Due Date:</label>
                 <input type="date" name="edit-date" id="edit-date" required>
             </div>
-            <label for="edit-priority">Priority</label>
             <div>
+                <label for="edit-priority">Priority</label>
+
                 <select name="edit-priority" id="edit-priority">
                     <option value="1-high">High</option>
                     <option value="2-medium">Medium</option>
@@ -120,7 +123,8 @@
     </div>
     <!-- PROJECT INPUT -->
     <div class="project-input hidden">
-        <form action="#" class="project-form">
+        <h2>NEW PROJECT</h2>
+        <form action="#" id="project-form">
             <div>
                 <label for="project-name">Project Name</label>
                 <input type="text" name="project-name" id="project-name">
