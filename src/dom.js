@@ -346,19 +346,19 @@ function createDiv(divClass, divContent, append) {
   return newDiv;
 }
 
-function createButton(buttonClass, content, append) {
-  const newButton = document.createElement("button");
-  newButton.setAttribute("type", "button");
-  newButton.textContent = content;
-  newButton.classList.add(buttonClass);
-  append.appendChild(newButton);
-  return newButton;
-}
+// function createButton(buttonClass, content, append) {
+//   const newButton = document.createElement("button");
+//   newButton.setAttribute("type", "button");
+//   newButton.textContent = content;
+//   newButton.classList.add(buttonClass);
+//   append.appendChild(newButton);
+//   return newButton;
+// }
 
 function createIcon(icon, append) {
   const newIcon = new Image();
   newIcon.src = icon;
-  newIcon.style.width = "40px";
+  newIcon.style.width = "25px";
   newIcon.classList.add("task-icon");
   append.appendChild(newIcon);
   return newIcon;

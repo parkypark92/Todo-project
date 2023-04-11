@@ -71,7 +71,7 @@ function getAllTasks() {
   for (let task of tasks) {
     currentTasks.push(task);
   }
-  mainHeading.textContent = "ALL TASKS";
+  mainHeading.textContent = "All Tasks";
   displayCurrentTasks();
 }
 
@@ -82,7 +82,7 @@ function getTodaysTasks() {
       currentTasks.push(task);
     }
   }
-  mainHeading.textContent = "TODAY'S TASKS";
+  mainHeading.textContent = "Todays Tasks";
   displayCurrentTasks();
 }
 
@@ -96,7 +96,7 @@ function getWeekTasks() {
       }
     }
   }
-  mainHeading.textContent = "THIS WEEK'S TASKS";
+  mainHeading.textContent = "This Weeks Tasks";
   displayCurrentTasks();
 }
 
@@ -109,7 +109,7 @@ function getCompletedTasks() {
   for (let task of currentTasks) {
     createCompletedTaskDisplays(task);
   }
-  mainHeading.textContent = "COMPLETED TASKS";
+  mainHeading.textContent = "Completed Tasks";
 }
 
 function getProjectTasks() {

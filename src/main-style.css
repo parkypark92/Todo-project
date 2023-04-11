@@ -1,11 +1,38 @@
+@font-face {
+    font-family: 'Roboto Medium';
+    src: url('./fonts/Roboto/Roboto-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Regular';
+    src: url('./fonts/Roboto/Roboto-Regular.ttf');
+}
+@font-face {
+    font-family: 'Roboto Light';
+    src: url('./fonts/Roboto/Roboto-Light.ttf');
+}
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: url('./fonts/RobotoCondensed/RobotoCondensed-Regular.ttf');
+}
+
 * {
+    font-family: 'Roboto Light';
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-html, body, .main-wrapper {
+header, .tasks-header h2, .projects-header h2, .main-heading {
+    font-family: 'Roboto Condensed';
+}
+
+html, body {
     height: auto;
+}
+
+body {
+    font-size: 0.8em;
 }
 
 .main-wrapper {
@@ -25,6 +52,7 @@ header {
 }
 
 nav {
+    min-height: calc(100vh - 70px);
     background-color: rgb(243, 243, 243);
     grid-row: 2 / 4;
 }
@@ -63,7 +91,7 @@ img {
 }
 
 .display-selector:hover {
-    background-color: rgb(218, 218, 218);
+    background-color: rgb(228, 228, 228);
 }
 
 .display-selector {
@@ -87,6 +115,8 @@ img {
 
 main {
     padding: 0px 80px;
+    display: flex;
+    flex-direction: column;
 }
 
 .main-heading {
@@ -103,25 +133,25 @@ main {
 .date-header {
     background-color: white;
     font-weight: normal;
-    padding-left: 20px;
     margin-bottom: 20px;
     border-bottom: 1px solid rgb(201, 201, 201);
     position: sticky;
     top: 210px;
     z-index: 1;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .task-display {
     display: grid;
     grid-template-columns: 20px 4fr 1fr;
     align-items: center;
-    height: 60px;
-    max-width: 1200px;
-    background-color: #dfecea;
+    height: 50px;
+    min-width: 600px;
+    background-color: #f0f5f4;
     padding-right: 20px;
     border-radius: 20px;
     margin-bottom: 20px;
-    box-shadow: 1px 1px 2px rgb(173, 173, 173);
+    box-shadow: 1px 1px 2px rgb(212, 212, 212);
 }
 
 .task-description {
@@ -131,8 +161,8 @@ main {
 
 .task-display-buttons {
     display: flex;
-    justify-content: space-between;
-
+    justify-content: end;
+    gap: 40px;
 }
 
 .task-icon:hover {
@@ -142,22 +172,58 @@ main {
 
 .priority-color {
     width: 20px;
-    height: 60px;
+    height: 50px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     box-shadow: -2px 0px 3px rgb(177, 176, 176) inset;
 }
 
+.complete-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    min-width: 600px;
+    background-color: #f0f5f4;
+    font-size: 1.5em;
+    padding: 0px 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 2px rgb(212, 212, 212);
+}
+
 .task-input, .project-input, .task-edit {
-    width: 400px;
-    height: 400px;
-    background-color: rgb(231, 230, 230);
+    width: 600px;
+    height: 300px;
+    background-color: rgb(243, 243, 243);
+    padding: 30px 50px;
+    text-align: center;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 0 0 10px 10px rgb(214, 214, 214);
+}
+
+#task-form, #task-edit-form, #project-form {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    padding-top: 30px;
+    font-family: 'Roboto Condensed';
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+label {
+    display: inline-block;
+    width: 120px;
+    text-align: right;
+}
+
+input, select {
+    width: 300px;
 }
 
 .input-error, .edit-error, .project-error {
@@ -176,13 +242,8 @@ main {
     background-color: rgb(62, 189, 62);
 }
 
-.complete-display {
-    height: 100px;
-    background-color: rgb(111, 201, 111);
-}
-
 .active {
-    background-color: rgb(218, 218, 218);
+    background-color: rgb(228, 228, 228);
 
 }
 
