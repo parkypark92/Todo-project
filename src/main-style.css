@@ -86,6 +86,29 @@ img {
     filter: invert(66%) sepia(11%) saturate(2505%) hue-rotate(71deg) brightness(95%) contrast(89%);
 }
 
+.project-tab-div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.remove-project {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(250, 84, 84);
+    color: white;
+    font-weight: 900;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    font-size: 2em;
+}
+
+.remove-project:hover {
+    cursor: pointer;
+}
+
 #new-project:hover, #new-task:hover, .display-selector:hover {
     cursor: pointer;
 }
@@ -99,6 +122,7 @@ img {
     justify-content: space-between;
     padding: 0px 10px;
     border-radius: 10px;
+    width: 220px;
 }
 
 #completed-tasks {

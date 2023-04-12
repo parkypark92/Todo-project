@@ -231,7 +231,7 @@ function editTaskValues() {
   tasks[this.getAttribute("data-index")].date = editDate.value;
   tasks[this.getAttribute("data-index")].project = editProject.value;
   tasks[this.getAttribute("data-index")].priority = editPriority.value;
-  const taskDisplay = document.querySelector(
+  const taskDisplay = display.querySelector(
     `[data-index="${this.getAttribute("data-index")}"]`
   );
   taskDisplay.querySelector(".task-description").textContent =
@@ -271,6 +271,7 @@ const addProjectButton = document.querySelector(".add-project");
 const cancelProjectButton = document.querySelector(".cancel-project");
 const projectError = document.querySelector(".project-error");
 const projectsBreakdown = document.querySelector(".projects-breakdown");
+const projectSelection = document.querySelector("#project-select");
 
 newProjectButton.addEventListener("click", () =>
   displayInputWindow(projectInput)
@@ -290,16 +291,27 @@ function noProjectInputMessage() {
   projectError.textContent = "Please enter a Project Name!";
 }
 
-function addProjectToSidebar(name) {
-  const projectDiv = createDiv("display-selector", "", projectsBreakdown);
+function displayProjects() {
+  projectsBreakdown.textContent = "";
+  for (let project of projects) {
+    addProjectToSidebar(project);
+  }
+}
+
+function addProjectToSidebar(project) {
+  const projectDiv = createDiv("project-tab-div", "", projectsBreakdown);
+  const projectTab = createDiv("display-selector", "", projectDiv);
+  const removeProject = createDiv("remove-project", "-", projectDiv);
+  removeProject.setAttribute("data-index", project.id);
+  removeProject.addEventListener("click", deleteProject);
   const projectHeading = document.createElement("h3");
-  projectHeading.textContent = name;
-  projectDiv.appendChild(projectHeading);
-  const projectCounter = createDiv("counter", "0", projectDiv);
-  projectCounter.classList.add(`${name}`);
+  projectHeading.textContent = project.name;
+  projectTab.appendChild(projectHeading);
+  const projectCounter = createDiv("counter", "0", projectTab);
+  projectCounter.classList.add(`${project.name}`);
   projectHeadings.push(projectHeading);
-  projectTabs.push(projectDiv);
-  addClickEventToProject(projectDiv);
+  projectTabs.push(projectTab);
+  addClickEventToProject(projectTab);
 }
 
 function addProjectToSelection(newOption) {
@@ -319,9 +331,44 @@ function addNewProject() {
   const newProject = Project(projectName.value.toUpperCase());
   projects.push(newProject);
   newProject.id = projects.indexOf(newProject);
-  addProjectToSidebar(projectName.value.toUpperCase());
-  addProjectToSelection(projectName.value.toUpperCase());
+  displayProjects();
+  updateProjectCounters();
+  addProjectToSelection(newProject.name);
   exitInputWindow(projectInput, projectForm, projectError);
+}
+
+function deleteProject(e) {
+  const removedTab = projectTabs.splice(e.target.getAttribute("data-index"), 1);
+  if (removedTab[0].classList.contains("active")) {
+    allTasks.classList.add("active");
+  }
+  const removed = projects.splice(e.target.getAttribute("data-index"), 1);
+  removeProjectFromSelection(removed);
+  displayProjects();
+  updateProjectCounters();
+  displayChecker();
+}
+
+function removeProjectFromSelection(toRemove) {
+  for (let option of projectSelection.children) {
+    if (option.value === toRemove[0].name) {
+      option.remove();
+    }
+  }
+  for (let option of editProject.children) {
+    if (option.value === toRemove[0].name) {
+      option.remove();
+      setProjectSelections(option.value);
+    }
+  }
+}
+
+function setProjectSelections(projectToRemove) {
+  for (let task of tasks) {
+    if (task.project === projectToRemove) {
+      task.project = "none";
+    }
+  }
 }
 
 // DOM
