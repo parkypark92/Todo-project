@@ -196,7 +196,7 @@ main {
     width: 600px;
     height: 300px;
     background-color: rgb(243, 243, 243);
-    padding: 30px 50px;
+    padding: 50px 83px;
     text-align: center;
     position: fixed;
     top: 50%;
@@ -210,7 +210,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding-top: 30px;
+    padding-top: 20px;
     font-family: 'Roboto Condensed';
     font-weight: bold;
     font-size: 1.2em;
@@ -220,14 +220,36 @@ label {
     display: inline-block;
     width: 120px;
     text-align: right;
+    margin-right: 10px;
 }
 
 input, select {
     width: 300px;
 }
 
+.popup-button {
+    background-color: #b2beff;
+    font-weight: bold;
+    width: 80px;
+    height: 25px;
+    border: 1px solid #666e99;
+    border-radius: 10px;
+}
+
+.popup-button:hover {
+    cursor: pointer;
+    background-color: #a0adf7;
+
+}
+
+.button-div {
+    align-self: end;
+    padding-top: 10px;
+}
+
 .input-error, .edit-error, .project-error {
     color: red;
+    text-align: right;
 }
 
 .high-priority {

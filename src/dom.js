@@ -66,7 +66,7 @@ completeCounter.textContent = "0";
 newTaskButton.addEventListener("click", () => displayInputWindow(taskInput));
 addTaskButton.addEventListener("click", addNewTask);
 cancelTaskButton.addEventListener("click", () =>
-  exitInputWindow(taskInput, taskForm)
+  exitInputWindow(taskInput, taskForm, inputError)
 );
 
 function noInputValueMessage() {
@@ -86,7 +86,6 @@ function addNewTask() {
     noInputValueMessage();
     return;
   }
-  inputError.textContent = "";
   let newTask = Task(
     taskDescription.value,
     taskDate.value,
@@ -97,7 +96,7 @@ function addNewTask() {
   newTask.id = tasks.indexOf(newTask);
   updateCounters();
   displayChecker();
-  exitInputWindow(taskInput, taskForm);
+  exitInputWindow(taskInput, taskForm, inputError);
 }
 
 function createTaskDisplay(task) {
@@ -207,7 +206,9 @@ function displayEditInput() {
 }
 
 confirmEdit.addEventListener("click", editTaskValues);
-cancelEdit.addEventListener("click", () => exitInputWindow(editTask, editForm));
+cancelEdit.addEventListener("click", () =>
+  exitInputWindow(editTask, editForm, editError)
+);
 
 function noEditValueMessage() {
   if (!editDescription.value) {
@@ -237,7 +238,7 @@ function editTaskValues() {
     editDescription.value;
   updateCounters();
   displayChecker();
-  exitInputWindow(editTask, editForm);
+  exitInputWindow(editTask, editForm, editError);
 }
 
 function deleteTask(e) {
@@ -264,7 +265,7 @@ function setTaskComplete(e) {
 // PROJECTS
 const newProjectButton = document.querySelector("#new-project");
 const projectInput = document.querySelector(".project-input");
-const projectForm = document.querySelector(".project-form");
+const projectForm = document.querySelector("#project-form");
 const projectName = document.querySelector("#project-name");
 const addProjectButton = document.querySelector(".add-project");
 const cancelProjectButton = document.querySelector(".cancel-project");
@@ -275,7 +276,7 @@ newProjectButton.addEventListener("click", () =>
   displayInputWindow(projectInput)
 );
 cancelProjectButton.addEventListener("click", () =>
-  exitInputWindow(projectInput, projectForm)
+  exitInputWindow(projectInput, projectForm, projectError)
 );
 addProjectButton.addEventListener("click", addNewProject);
 
@@ -320,7 +321,7 @@ function addNewProject() {
   newProject.id = projects.indexOf(newProject);
   addProjectToSidebar(projectName.value.toUpperCase());
   addProjectToSelection(projectName.value.toUpperCase());
-  exitInputWindow(projectInput, projectForm);
+  exitInputWindow(projectInput, projectForm, projectError);
 }
 
 // DOM
@@ -329,13 +330,11 @@ function displayInputWindow(input) {
   mainWrapper.classList.add("blur");
 }
 
-function exitInputWindow(input, form) {
+function exitInputWindow(input, form, errorMessage) {
   input.classList.add("hidden");
   mainWrapper.classList.remove("blur");
   form.reset();
-  inputError.textContent = "";
-  editError.textContent = "";
-  projectError.textContent = "";
+  errorMessage.textContent = "";
 }
 
 function createDiv(divClass, divContent, append) {
