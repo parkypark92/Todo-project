@@ -329,7 +329,11 @@ function addNewProject() {
   if (!projectName.value) {
     noProjectInputMessage();
     return;
+  } else if (projectName.checkValidity() === false) {
+    projectError.textContent = "Project names must be one word!";
+    return;
   }
+  console.log(projectName.checkValidity());
   const newProject = Project(projectName.value.toUpperCase());
   projects.push(newProject);
   newProject.id = projects.indexOf(newProject);
@@ -337,8 +341,6 @@ function addNewProject() {
   updateProjectCounters();
   addProjectToSelection(newProject.name);
   exitInputWindow(projectInput, projectForm, projectError);
-  console.log(projects);
-  console.log(projectTabs);
 }
 
 function deleteProject(e) {
@@ -353,8 +355,6 @@ function deleteProject(e) {
   displayProjects();
   updateProjectCounters();
   displayChecker();
-  console.log(projects);
-  console.log(projectTabs);
 }
 
 function removeProjectFromSelection(toRemove) {
