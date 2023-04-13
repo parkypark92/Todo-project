@@ -3,7 +3,7 @@ import binIcon from "./icons/bin.png";
 import editIcon from "./icons/editing.png";
 import completeIcon from "./icons/checked.png";
 import { Task, tasks, tasksComplete } from "./tasks";
-import { Project, projects, projectHeadings, projectTabs } from "./projects";
+import { Project, projects, projectTabs } from "./projects";
 import {
   activate,
   displayChecker,
@@ -171,14 +171,15 @@ function updateCompleteCounter() {
 }
 
 function updateProjectCounters() {
-  for (let heading of projectHeadings) {
+  for (let tab of projectTabs) {
     let counter = 0;
     for (let task of tasks) {
-      if (task.project === heading.textContent) {
+      let heading = tab.getElementsByTagName("h3");
+      if (task.project === heading[0].textContent) {
         counter++;
       }
     }
-    heading.nextElementSibling.textContent = counter;
+    tab.lastChild.textContent = counter;
   }
 }
 
@@ -293,6 +294,7 @@ function noProjectInputMessage() {
 
 function displayProjects() {
   projectsBreakdown.textContent = "";
+  projectTabs.length = 0;
   for (let project of projects) {
     addProjectToSidebar(project);
   }
@@ -301,6 +303,7 @@ function displayProjects() {
 function addProjectToSidebar(project) {
   const projectDiv = createDiv("project-tab-div", "", projectsBreakdown);
   const projectTab = createDiv("display-selector", "", projectDiv);
+  projectTab.setAttribute("data-index", project.id);
   const removeProject = createDiv("remove-project", "-", projectDiv);
   removeProject.setAttribute("data-index", project.id);
   removeProject.addEventListener("click", deleteProject);
@@ -309,7 +312,6 @@ function addProjectToSidebar(project) {
   projectTab.appendChild(projectHeading);
   const projectCounter = createDiv("counter", "0", projectTab);
   projectCounter.classList.add(`${project.name}`);
-  projectHeadings.push(projectHeading);
   projectTabs.push(projectTab);
   addClickEventToProject(projectTab);
 }
@@ -335,18 +337,24 @@ function addNewProject() {
   updateProjectCounters();
   addProjectToSelection(newProject.name);
   exitInputWindow(projectInput, projectForm, projectError);
+  console.log(projects);
+  console.log(projectTabs);
 }
 
 function deleteProject(e) {
   const removedTab = projectTabs.splice(e.target.getAttribute("data-index"), 1);
   if (removedTab[0].classList.contains("active")) {
+    removedTab[0].classList.remove("active");
     allTasks.classList.add("active");
   }
   const removed = projects.splice(e.target.getAttribute("data-index"), 1);
   removeProjectFromSelection(removed);
+  reassignProjectIndexes();
   displayProjects();
   updateProjectCounters();
   displayChecker();
+  console.log(projects);
+  console.log(projectTabs);
 }
 
 function removeProjectFromSelection(toRemove) {
@@ -368,6 +376,15 @@ function setProjectSelections(projectToRemove) {
     if (task.project === projectToRemove) {
       task.project = "none";
     }
+  }
+}
+
+function reassignProjectIndexes() {
+  for (let project of projects) {
+    project.id = projects.indexOf(project);
+  }
+  for (let tab of projectTabs) {
+    tab.setAttribute("data-index", projectTabs.indexOf(tab));
   }
 }
 

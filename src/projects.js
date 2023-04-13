@@ -1,7 +1,6 @@
-export { Project, projects, projectHeadings, projectTabs };
+export { Project, projects, projectTabs };
 
 const projects = [];
-const projectHeadings = [];
 const projectTabs = [];
 const Project = (name) => {
   return {
