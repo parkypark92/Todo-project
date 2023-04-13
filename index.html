@@ -60,7 +60,7 @@
         <form action="#" id="task-form">
             <div>
                 <label for="description">Task description:</label>
-                <input type="text" name="description" id="description" required>
+                <input type="text" name="description" id="description" maxlength="50" required>
             </div>
             <div>
                 <label for="date">Due Date:</label>
@@ -93,7 +93,7 @@
         <form action="#" id="task-edit-form">
             <div>
                 <label for="edit-description">Task description:</label>
-                <input type="text" name="edit-description" id="edit-description" required>
+                <input type="text" name="edit-description" id="edit-description" maxlength="50" required>
             </div>
             <div>
                 <label for="edit-date">Due Date:</label>
@@ -127,7 +127,7 @@
         <form action="#" id="project-form">
             <div>
                 <label for="project-name">Project Name:</label>
-                <input type="text" name="project-name" id="project-name">
+                <input type="text" name="project-name" id="project-name" maxlength="20" pattern="^[a-zA-Z]+$">
             </div>
             <div class="button-div">
                 <button type="button" class="add-project popup-button">Create</button>
