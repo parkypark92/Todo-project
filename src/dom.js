@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import binIcon from "./icons/bin.png";
 import editIcon from "./icons/editing.png";
 import completeIcon from "./icons/checked.png";
+import { updateStorage } from "./storage";
 import { Task, tasks, tasksComplete } from "./tasks";
 import { Project, projects, projectTabs } from "./projects";
 import {
@@ -94,6 +95,7 @@ function addNewTask() {
   );
   tasks.push(newTask);
   newTask.id = tasks.indexOf(newTask);
+  updateStorage("saved tasks", tasks);
   updateCounters();
   displayChecker();
   exitInputWindow(taskInput, taskForm, inputError);
@@ -237,6 +239,7 @@ function editTaskValues() {
   );
   taskDisplay.querySelector(".task-description").textContent =
     editDescription.value;
+  updateStorage("saved tasks", tasks);
   updateCounters();
   displayChecker();
   exitInputWindow(editTask, editForm, editError);
@@ -245,6 +248,7 @@ function editTaskValues() {
 function deleteTask(e) {
   const complete = tasks.splice(e.target.getAttribute("data-index"), 1);
   reassignIndex();
+  updateStorage("saved tasks", tasks);
   updateCounters();
   displayChecker();
   return complete;
@@ -260,6 +264,7 @@ function setTaskComplete(e) {
   const [taskDone] = deleteTask(e);
   taskDone.complete = true;
   tasksComplete.push(taskDone);
+  updateStorage("completed tasks", tasksComplete);
   updateCounters();
 }
 
@@ -333,10 +338,10 @@ function addNewProject() {
     projectError.textContent = "Project names must be one word!";
     return;
   }
-  console.log(projectName.checkValidity());
   const newProject = Project(projectName.value.toUpperCase());
   projects.push(newProject);
   newProject.id = projects.indexOf(newProject);
+  updateStorage("saved projects", projects);
   displayProjects();
   updateProjectCounters();
   addProjectToSelection(newProject.name);
@@ -352,6 +357,7 @@ function deleteProject(e) {
   const removed = projects.splice(e.target.getAttribute("data-index"), 1);
   removeProjectFromSelection(removed);
   reassignProjectIndexes();
+  updateStorage("saved projects", projects);
   displayProjects();
   updateProjectCounters();
   displayChecker();
@@ -429,5 +435,9 @@ function createIcon(icon, append) {
 
 document.addEventListener("DOMContentLoaded", () => {
   getAllTasks();
+  displayProjects();
+  for (let project of projects) {
+    addProjectToSelection(project.name);
+  }
   updateCounters();
 });

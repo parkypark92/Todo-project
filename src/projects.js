@@ -1,6 +1,9 @@
 export { Project, projects, projectTabs };
 
-const projects = [];
+const projects =
+  localStorage.getItem("saved projects") === null
+    ? []
+    : JSON.parse(localStorage.getItem("saved projects"));
 const projectTabs = [];
 const Project = (name) => {
   return {
