@@ -338,6 +338,12 @@ function addNewProject() {
     projectError.textContent = "Project names must be one word!";
     return;
   }
+  for (let item of projects) {
+    if (projectName.value.toUpperCase() === item.name.toUpperCase()) {
+      projectError.textContent = "Project already exists!";
+      return;
+    }
+  }
   const newProject = Project(projectName.value.toUpperCase());
   projects.push(newProject);
   newProject.id = projects.indexOf(newProject);
