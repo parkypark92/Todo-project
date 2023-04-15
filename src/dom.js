@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import binIcon from "./icons/bin.png";
 import editIcon from "./icons/editing.png";
 import completeIcon from "./icons/checked.png";
+import plusIcon from "./icons/plus-circle.svg";
 import { updateStorage } from "./storage";
 import { Task, tasks, tasksComplete } from "./tasks";
 import { Project, projects, projectTabs } from "./projects";
@@ -30,6 +31,7 @@ const display = document.querySelector("main");
 
 // TASKS
 const newTaskButton = document.querySelector("#new-task");
+newTaskButton.src = plusIcon;
 const taskInput = document.querySelector(".task-input");
 const taskForm = document.querySelector("#task-form");
 const taskDescription = document.querySelector("#description");
@@ -270,6 +272,7 @@ function setTaskComplete(e) {
 
 // PROJECTS
 const newProjectButton = document.querySelector("#new-project");
+newProjectButton.src = plusIcon;
 const projectInput = document.querySelector(".project-input");
 const projectForm = document.querySelector("#project-form");
 const projectName = document.querySelector("#project-name");
