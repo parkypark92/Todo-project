@@ -361,7 +361,7 @@ var ___CSS_LOADER_URL_REPLACEMENT_1___ = _node_modules_css_loader_dist_runtime_g
 var ___CSS_LOADER_URL_REPLACEMENT_2___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_2___);
 var ___CSS_LOADER_URL_REPLACEMENT_3___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_3___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@font-face {\n    font-family: 'Roboto Medium';\n    src: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n\n@font-face {\n    font-family: 'Roboto Regular';\n    src: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\n}\n@font-face {\n    font-family: 'Roboto Light';\n    src: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ");\n}\n@font-face {\n    font-family: 'Roboto Condensed';\n    src: url(" + ___CSS_LOADER_URL_REPLACEMENT_3___ + ");\n}\n\n* {\n    font-family: 'Roboto Light';\n    padding: 0;\n    margin: 0;\n    box-sizing: border-box;\n}\n\nheader, .tasks-header h2, .projects-header h2, .main-heading {\n    font-family: 'Roboto Condensed';\n}\n\nhtml, body {\n    height: auto;\n}\n\nbody {\n    font-size: 0.8em;\n}\n\n.main-wrapper {\n    display: grid;\n    grid-template: 70px 140px 1fr / 300px 1fr;\n}\n\nheader {\n    display: flex;\n    align-items: center;\n    padding: 20px;\n    background-color: #e0829d;\n    grid-column: 1 / 3;\n    position: sticky;\n    top: 0px;\n    z-index: 1;\n}\n\nnav {\n    min-height: calc(100vh - 70px);\n    background-color: rgb(243, 243, 243);\n    grid-row: 2 / 4;\n}\n\n.sticky-nav {\n    position: sticky;\n    top: 70px;\n    padding: 20px;\n}\n\n.tasks {\n    margin-bottom: 20px;\n    padding-bottom: 20px;\n    border-bottom: 1px solid rgb(201, 201, 201);\n}\n\n.tasks-header, .projects-header {\n    display: flex;\n    justify-content: space-between;\n    margin-bottom: 15px;\n    padding-right: 6px;\n}\n\n.tasks-breakdown, .projects-breakdown {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n\n#new-task, #new-project  {\n    width: 30px;\n    filter: invert(66%) sepia(11%) saturate(2505%) hue-rotate(71deg) brightness(95%) contrast(89%);\n}\n\n.project-tab-div {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n.remove-project {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    background-color: rgb(250, 84, 84);\n    color: white;\n    font-weight: 900;\n    border-radius: 50%;\n    width: 15px;\n    height: 15px;\n    font-size: 2em;\n}\n\n.remove-project:hover {\n    cursor: pointer;\n}\n\n#new-project:hover, #new-task:hover, .display-selector:hover {\n    cursor: pointer;\n}\n\n.display-selector:hover {\n    background-color: rgb(228, 228, 228);\n}\n\n.display-selector {\n    display: flex;\n    justify-content: space-between;\n    padding: 0px 10px;\n    border-radius: 10px;\n    width: 220px;\n}\n\n#completed-tasks {\n    margin-top: 20px;\n}\n\n.counter {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    color: rgb(114, 114, 114);\n    min-width: 22px;\n}\n\nmain {\n    padding: 0px 80px;\n    display: flex;\n    flex-direction: column;\n}\n\n.main-heading {\n    background-color: white;\n    padding-left: 100px;\n    padding-top: 80px;\n    font-size: 1.6em;\n    font-weight: bold;\n    position: sticky;\n    top: 70px;\n    z-index: 1;\n}\n\n.date-header {\n    background-color: white;\n    font-weight: normal;\n    margin-bottom: 20px;\n    border-bottom: 1px solid rgb(201, 201, 201);\n    position: sticky;\n    top: 210px;\n    z-index: 1;\n    font-family: 'Courier New', Courier, monospace;\n}\n\n.task-display {\n    display: grid;\n    grid-template-columns: 20px 4fr 1fr;\n    align-items: center;\n    height: 50px;\n    min-width: 600px;\n    background-color: #f0f5f4;\n    padding-right: 20px;\n    border-radius: 20px;\n    margin-bottom: 20px;\n    box-shadow: 1px 1px 2px rgb(212, 212, 212);\n}\n\n.task-description {\n    font-size: 1.5em;\n    padding-left: 20px;\n}\n\n.task-display-buttons {\n    display: flex;\n    justify-content: end;\n    gap: 40px;\n}\n\n.task-icon:hover {\n    cursor: pointer;\n    filter: invert(69%) sepia(16%) saturate(3132%) hue-rotate(199deg) brightness(89%) contrast(99%);\n}\n\n.priority-color {\n    width: 20px;\n    height: 50px;\n    border-top-left-radius: 20px;\n    border-bottom-left-radius: 20px;\n    box-shadow: -2px 0px 3px rgb(177, 176, 176) inset;\n}\n\n.complete-display {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    height: 50px;\n    min-width: 600px;\n    background-color: #f0f5f4;\n    font-size: 1.5em;\n    padding: 0px 20px;\n    border-radius: 20px;\n    margin-bottom: 20px;\n    box-shadow: 1px 1px 2px rgb(212, 212, 212);\n}\n\n.task-input, .project-input, .task-edit {\n    width: 600px;\n    height: 300px;\n    background-color: rgb(243, 243, 243);\n    padding: 50px 83px;\n    text-align: center;\n    position: fixed;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    border-radius: 10px;\n    box-shadow: 0 0 10px 10px rgb(214, 214, 214);\n}\n\n#task-form, #task-edit-form, #project-form {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    padding-top: 20px;\n    font-family: 'Roboto Condensed';\n    font-weight: bold;\n    font-size: 1.2em;\n}\n\nlabel {\n    display: inline-block;\n    width: 120px;\n    text-align: right;\n    margin-right: 10px;\n}\n\ninput, select {\n    width: 300px;\n}\n\n.popup-button {\n    background-color: #b2beff;\n    font-weight: bold;\n    width: 80px;\n    height: 25px;\n    border: 1px solid #666e99;\n    border-radius: 10px;\n}\n\n.popup-button:hover {\n    cursor: pointer;\n    background-color: #a0adf7;\n\n}\n\n.button-div {\n    align-self: end;\n    padding-top: 10px;\n}\n\n.input-error, .edit-error, .project-error {\n    color: red;\n    text-align: right;\n}\n\n.high-priority {\n    background-color: rgb(248, 92, 92);\n}\n\n.medium-priority {\n    background-color: orange;\n}\n\n.low-priority {\n    background-color: rgb(62, 189, 62);\n}\n\n.active {\n    background-color: rgb(228, 228, 228);\n\n}\n\n.hidden {\n    display: none;\n}\n\n.blur {\n    filter:blur(3px);\n    pointer-events: none;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@font-face {\n    font-family: 'Roboto Medium';\n    src: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n\n@font-face {\n    font-family: 'Roboto Regular';\n    src: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\n}\n@font-face {\n    font-family: 'Roboto Light';\n    src: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ");\n}\n@font-face {\n    font-family: 'Roboto Condensed';\n    src: url(" + ___CSS_LOADER_URL_REPLACEMENT_3___ + ");\n}\n\n* {\n    font-family: 'Roboto Light';\n    padding: 0;\n    margin: 0;\n    box-sizing: border-box;\n}\n\nheader, .tasks-header h2, .projects-header h2, .main-heading {\n    font-family: 'Roboto Condensed';\n}\n\nhtml, body {\n    height: auto;\n}\n\nbody {\n    font-size: 0.8em;\n}\n\n.main-wrapper {\n    display: grid;\n    grid-template: 70px 140px 1fr / 300px 1fr;\n}\n\nheader {\n    display: flex;\n    align-items: center;\n    padding: 20px;\n    background-color: #e0829d;\n    grid-column: 1 / 3;\n    position: sticky;\n    top: 0px;\n    z-index: 1;\n}\n\nnav {\n    min-height: calc(100vh - 70px);\n    background-color: rgb(243, 243, 243);\n    grid-row: 2 / 4;\n}\n\n.sticky-nav {\n    position: sticky;\n    top: 70px;\n    padding: 20px;\n}\n\n.tasks {\n    margin-bottom: 20px;\n    padding-bottom: 20px;\n    border-bottom: 1px solid rgb(201, 201, 201);\n}\n\n.tasks-header, .projects-header {\n    display: flex;\n    justify-content: space-between;\n    margin-bottom: 15px;\n    padding-right: 6px;\n}\n\n.tasks-breakdown, .projects-breakdown {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n\n#new-task, #new-project  {\n    width: 30px;\n    filter: invert(66%) sepia(11%) saturate(2505%) hue-rotate(71deg) brightness(95%) contrast(89%);\n}\n\n.project-tab-div {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n.remove-project {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    background-color: rgb(250, 84, 84);\n    color: white;\n    font-weight: 900;\n    border-radius: 50%;\n    width: 15px;\n    height: 15px;\n    font-size: 2em;\n}\n\n.remove-project:hover {\n    cursor: pointer;\n}\n\n#new-project:hover, #new-task:hover, .display-selector:hover {\n    cursor: pointer;\n}\n\n.display-selector:hover {\n    background-color: rgb(228, 228, 228);\n}\n\n.display-selector {\n    display: flex;\n    justify-content: space-between;\n    padding: 0px 10px;\n    border-radius: 10px;\n    width: 220px;\n}\n\n#completed-tasks {\n    margin-top: 20px;\n}\n\n.counter {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    color: rgb(114, 114, 114);\n    min-width: 22px;\n}\n\nmain {\n    padding: 0px 80px;\n    display: flex;\n    flex-direction: column;\n}\n\n.main-heading {\n    background-color: white;\n    padding-left: 100px;\n    padding-top: 80px;\n    font-size: 1.6em;\n    font-weight: bold;\n    position: sticky;\n    top: 70px;\n    z-index: 1;\n}\n\n.date-header {\n    background-color: white;\n    font-weight: normal;\n    margin-bottom: 20px;\n    border-bottom: 1px solid rgb(201, 201, 201);\n    position: sticky;\n    top: 210px;\n    z-index: 1;\n    font-family: 'Courier New', Courier, monospace;\n}\n\n.task-display {\n    display: grid;\n    grid-template-columns: 20px 4fr 1fr;\n    align-items: center;\n    height: 50px;\n    min-width: 600px;\n    background-color: #f0f5f4;\n    padding-right: 20px;\n    border-radius: 20px;\n    margin-bottom: 20px;\n    box-shadow: 1px 1px 2px rgb(212, 212, 212);\n}\n\n.task-description {\n    font-size: 1.5em;\n    padding-left: 20px;\n}\n\n.task-display-buttons {\n    display: flex;\n    justify-content: end;\n    gap: 40px;\n}\n\n.task-icon:hover {\n    cursor: pointer;\n    filter: invert(69%) sepia(16%) saturate(3132%) hue-rotate(199deg) brightness(89%) contrast(99%);\n}\n\n.priority-color {\n    width: 20px;\n    height: 50px;\n    border-top-left-radius: 20px;\n    border-bottom-left-radius: 20px;\n    box-shadow: -2px 0px 3px rgb(177, 176, 176) inset;\n}\n\n.complete-display {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    height: 50px;\n    min-width: 600px;\n    background-color: #f0f5f4;\n    font-size: 1.5em;\n    padding: 0px 20px;\n    border-radius: 20px;\n    margin-bottom: 20px;\n    box-shadow: 1px 1px 2px rgb(212, 212, 212);\n}\n\n.task-input, .project-input, .task-edit {\n    width: 600px;\n    height: 300px;\n    background-color: rgb(243, 243, 243);\n    padding: 50px 83px;\n    text-align: center;\n    position: fixed;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    border-radius: 10px;\n    box-shadow: 0 0 10px 10px rgb(214, 214, 214);\n}\n\n#task-form, #task-edit-form, #project-form {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    padding-top: 20px;\n    font-family: 'Roboto Condensed';\n    font-weight: bold;\n    font-size: 1.2em;\n}\n\nlabel {\n    display: inline-block;\n    width: 120px;\n    text-align: right;\n    margin-right: 10px;\n}\n\ninput, select {\n    width: 300px;\n}\n\n.popup-button, .clear-completed-tasks {\n    background-color: #b2beff;\n    font-weight: bold;\n    width: 80px;\n    height: 25px;\n    border: 1px solid #666e99;\n    border-radius: 10px;\n}\n\n.clear-completed-tasks {\n    align-self: flex-end;\n}\n\n.popup-button:hover, .clear-completed-tasks:hover {\n    cursor: pointer;\n    background-color: #a0adf7;\n\n}\n\n.button-div {\n    align-self: end;\n    padding-top: 10px;\n}\n\n.input-error, .edit-error, .project-error {\n    color: red;\n    text-align: right;\n}\n\n.high-priority {\n    background-color: rgb(248, 92, 92);\n}\n\n.medium-priority {\n    background-color: orange;\n}\n\n.low-priority {\n    background-color: rgb(62, 189, 62);\n}\n\n.active {\n    background-color: rgb(228, 228, 228);\n\n}\n\n.hidden {\n    display: none;\n}\n\n.blur {\n    filter:blur(3px);\n    pointer-events: none;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -529,6 +529,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "allTasks": () => (/* binding */ allTasks),
 /* harmony export */   "completedTasks": () => (/* binding */ completedTasks),
+/* harmony export */   "createClearCompleteTasksButton": () => (/* binding */ createClearCompleteTasksButton),
 /* harmony export */   "createCompletedTaskDisplays": () => (/* binding */ createCompletedTaskDisplays),
 /* harmony export */   "createTaskDisplay": () => (/* binding */ createTaskDisplay),
 /* harmony export */   "display": () => (/* binding */ display),
@@ -655,11 +656,23 @@ function createTaskDisplay(task) {
 function createCompletedTaskDisplays(task) {
   const completeDiv = createDiv("complete-display", "", display);
   createDiv("complete-description", task.description, completeDiv);
-  createDiv(
-    "complete-date",
-    `Completed on ${(0,date_fns__WEBPACK_IMPORTED_MODULE_8__["default"])(new Date(), "dd-MM-yyyy")}`,
-    completeDiv
+  createDiv("complete-date", `Completed on ${task.completeDate}`, completeDiv);
+}
+
+function createClearCompleteTasksButton() {
+  const clearCompleted = createButton(
+    "clear-completed-tasks",
+    "Clear",
+    display
   );
+  clearCompleted.addEventListener("click", clearCompletedTasks);
+}
+
+function clearCompletedTasks() {
+  _tasks__WEBPACK_IMPORTED_MODULE_5__.tasksComplete.length = 0;
+  (0,_storage__WEBPACK_IMPORTED_MODULE_4__.updateStorage)("completed tasks", _tasks__WEBPACK_IMPORTED_MODULE_5__.tasksComplete);
+  updateCompleteCounter();
+  (0,_display__WEBPACK_IMPORTED_MODULE_7__.displayChecker)();
 }
 
 function updateCounters() {
@@ -796,6 +809,7 @@ function reassignIndex() {
 function setTaskComplete(e) {
   const [taskDone] = deleteTask(e);
   taskDone.complete = true;
+  taskDone.completeDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_8__["default"])(new Date(Date.now()), "dd-MM-yyyy");
   _tasks__WEBPACK_IMPORTED_MODULE_5__.tasksComplete.push(taskDone);
   (0,_storage__WEBPACK_IMPORTED_MODULE_4__.updateStorage)("completed tasks", _tasks__WEBPACK_IMPORTED_MODULE_5__.tasksComplete);
   updateCounters();
@@ -955,14 +969,14 @@ function createDiv(divClass, divContent, append) {
   return newDiv;
 }
 
-// function createButton(buttonClass, content, append) {
-//   const newButton = document.createElement("button");
-//   newButton.setAttribute("type", "button");
-//   newButton.textContent = content;
-//   newButton.classList.add(buttonClass);
-//   append.appendChild(newButton);
-//   return newButton;
-// }
+function createButton(buttonClass, content, append) {
+  const newButton = document.createElement("button");
+  newButton.setAttribute("type", "button");
+  newButton.textContent = content;
+  newButton.classList.add(buttonClass);
+  append.appendChild(newButton);
+  return newButton;
+}
 
 function createIcon(icon, append) {
   const newIcon = new Image();
@@ -1053,6 +1067,7 @@ const Task = (description, date, project, priority) => {
     priority,
     id: "",
     complete: false,
+    completeDate: "",
     setName: function (newName) {
       this.description = newName;
     },
@@ -1213,6 +1228,9 @@ function getCompletedTasks() {
   _dom__WEBPACK_IMPORTED_MODULE_2__.display.textContent = "";
   for (let task of _tasks__WEBPACK_IMPORTED_MODULE_0__.currentTasks) {
     (0,_dom__WEBPACK_IMPORTED_MODULE_2__.createCompletedTaskDisplays)(task);
+  }
+  if (_tasks__WEBPACK_IMPORTED_MODULE_0__.currentTasks.length > 0) {
+    (0,_dom__WEBPACK_IMPORTED_MODULE_2__.createClearCompleteTasksButton)();
   }
   _dom__WEBPACK_IMPORTED_MODULE_2__.mainHeading.textContent = "Completed Tasks";
 }
